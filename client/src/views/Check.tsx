@@ -12,12 +12,7 @@ const Profile = () => {
   useEffect(() => {
     console.log('user2222', user)
     const getUserMetadata = async (user: any) => {  
-      const {
-        apiBaseUrl,
-        data: {
-          audience
-        },
-      } = config;
+      const { audience } = config;
 
       try {
         const accessToken = await getAccessTokenSilently({
@@ -28,7 +23,7 @@ const Profile = () => {
         console.log('accessToken', accessToken)
         console.log('user-------->', user)
   
-        const metadataResponse = await fetch(`${apiBaseUrl}/check`, {
+        const metadataResponse = await fetch(`https://local.auth:4000/check`, {
           credentials: 'include',
           headers: {
             Authorization: `Bearer ${accessToken}`,

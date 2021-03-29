@@ -13,21 +13,18 @@ import { ApiContext } from './ApiContext';
 
 const history = createBrowserHistory();
 
-const apiBaseUrl: any = process.env.REACT_APP_API_BASE_URL;
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 
 function renderApp(configJson: {
-  apiBaseUrl: any,
-  data: {
-    domain: string,
-    client_id: string,
-    audience: string,
-  }
+  domain: string,
+  client_id: string,
+  audience: string,
 }) {
   const {
     audience,
     client_id: clientId,
     domain,
-  } = configJson.data;
+  } = configJson;
 
   ReactDOM.render(
     <React.StrictMode>
@@ -51,11 +48,7 @@ fetch(`${apiBaseUrl}/config.json`, {
   credentials: 'include',
 }).then(response => response.json()).then((data) => {
   console.log('data', data);
-  console.log('apiBaseUrl', apiBaseUrl);
-  renderApp({
-    apiBaseUrl,
-    data,
-  });
+  renderApp(data);
 });
 
 // If you want to start measuring performance in your app, pass a function
