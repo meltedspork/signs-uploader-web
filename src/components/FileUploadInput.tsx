@@ -83,7 +83,7 @@ import axios from 'axios';
 const  FileUploadInput = () => {
     const [file, setFile] = useState(''); // storing the uploaded file    // storing the recived file from backend
     const [data, getFile] = useState({ name: "", path: "" });    const [progress, setProgess] = useState(0); // progess bar
-    const el = useRef(); // accesing input element
+    // const el = useRef(); // accesing input element
     const handleChange = (e: any) => {
         setProgess(0)
         const file = e.target.files[0]; // accesing file

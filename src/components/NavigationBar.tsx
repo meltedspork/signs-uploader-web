@@ -22,14 +22,14 @@ const NavigationBar = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         {isAuthenticated ?
           <Fragment>
-                <Nav className="mr-auto">
-                  <NavLink to="/check" className="nav-link">
-                    Check
-                  </NavLink>
-                  <NavLink to="/sign" className="nav-link">
-                    Add Sign
-                  </NavLink>
-                </Nav>
+            <Nav className="mr-auto">
+              <NavLink to="/check" className="nav-link">
+                Check
+              </NavLink>
+              <NavLink to="/sign" className="nav-link">
+                Add Sign
+              </NavLink>
+            </Nav>
             <DropdownButton title={nickName} menuAlign="right" id="basic-nav-dropdown">
               <NavLink to="/profile" className="dropdown-item">
                 Profile

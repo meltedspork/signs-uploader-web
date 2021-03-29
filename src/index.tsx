@@ -26,19 +26,19 @@ function renderApp(configJson: {
   const { audience, clientId, domain } = configJson.data;
 
   ReactDOM.render(
-    <ApiContext.Provider value={configJson}>
-      <React.StrictMode>
-        <Router history={history}>
-          <Auth0Provider
-            domain={domain}
-            clientId={clientId}
-            redirectUri={window.location.origin}
-            audience={audience}>
+    <React.StrictMode>
+      <Router history={history}>
+        <Auth0Provider
+          domain={domain}
+          clientId={clientId}
+          redirectUri={window.location.origin}
+          audience={audience}>
+          <ApiContext.Provider value={configJson}>
             <App />
-          </Auth0Provider>
-        </Router>
-      </React.StrictMode>
-    </ApiContext.Provider>,
+          </ApiContext.Provider>
+        </Auth0Provider>
+      </Router>
+    </React.StrictMode>,
     document.getElementById('root')
   );
 };
