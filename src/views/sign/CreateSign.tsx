@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
-// import FileUploadInput from '../../components/FileUploadInput';
+import FileUploadInput from '../../components/FileUploadInput';
 
 const CreateSign = () => {
   return (
     <Fragment>
-      {/* <FileUploadInput /> */}
+      <FileUploadInput />
     </Fragment>
   );
 };

@@ -31,15 +31,13 @@ const NavigationBar = () => {
                   </NavLink>
                 </Nav>
             <DropdownButton title={nickName} menuAlign="right" id="basic-nav-dropdown">
-              <Dropdown.Item href="/profile">
+              <NavLink to="/profile" className="dropdown-item">
                 Profile
-              </Dropdown.Item>
+              </NavLink>
               <Dropdown.Divider />
-              <Dropdown.Item>
-                <NavLink to="#" onClick={() => logout({ returnTo: window.location.origin })}>
-                  Log out
-                </NavLink>
-              </Dropdown.Item>
+              <NavLink to="#" className="dropdown-item" onClick={() => logout({ returnTo: window.location.origin })}>
+                Log out
+              </NavLink>
             </DropdownButton>
           </Fragment>
           :

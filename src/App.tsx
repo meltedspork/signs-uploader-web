@@ -8,7 +8,7 @@ import Check from './views/Check';
 import CreateSign from './views/sign/CreateSign';
 import Profile from './views/Profile';
 
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
       <NavigationBar />
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/check" component={Check} />
