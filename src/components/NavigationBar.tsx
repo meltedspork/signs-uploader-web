@@ -23,11 +23,17 @@ const NavigationBar = () => {
         {isAuthenticated ?
           <Fragment>
                 <Nav className="mr-auto">
-                  <Nav.Link href="/check">Check</Nav.Link>
-                  <Nav.Link href="/sign">Add Sign</Nav.Link>
+                  <NavLink to="/check" className="nav-link">
+                    Check
+                  </NavLink>
+                  <NavLink to="/sign" className="nav-link">
+                    Add Sign
+                  </NavLink>
                 </Nav>
             <DropdownButton title={nickName} menuAlign="right" id="basic-nav-dropdown">
-              <Dropdown.Item href="/profile">Profile</Dropdown.Item>
+              <Dropdown.Item href="/profile">
+                Profile
+              </Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item>
                 <NavLink to="#" onClick={() => logout({ returnTo: window.location.origin })}>
