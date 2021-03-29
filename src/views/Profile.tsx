@@ -12,9 +12,14 @@ const Profile = () => {
     console.log('user2222', user)
     // console.log('this.context', this.context);
     const getUserMetadata = async (user: any) => {
-      const { audience } = config;
+      const {
+        apiBaseUrl,
+        data: {
+          audience
+        },
+      } = config;
 
-      // try {
+      try {
         const accessToken = await getAccessTokenSilently({
           audience,
           scope: "read:signs",
@@ -23,7 +28,7 @@ const Profile = () => {
         console.log('accessToken', accessToken)
         console.log('user-------->', user)
   
-        const userDetailsByIdUrl = `https://local.auth:4000/test`;
+        const userDetailsByIdUrl = `${apiBaseUrl}/test`;
   
         const metadataResponse = await fetch(userDetailsByIdUrl, {
           credentials: 'include',
@@ -34,12 +39,12 @@ const Profile = () => {
 
         console.log('metadataResponse -------->', metadataResponse)
   
-       const { user_metadata } = await metadataResponse.json();
+        const { user_metadata } = await metadataResponse.json();
   
-       setUserMetadata(user_metadata);
-      // } catch (e) {
-      //   console.log(e.message);
-      // }
+        setUserMetadata(user_metadata);
+      } catch (e) {
+        console.log(e.message);
+      }
     };
   
     getUserMetadata(user);
