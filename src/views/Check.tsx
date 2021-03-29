@@ -1,22 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { ApiContext } from '../ApiContext';
 import { Redirect } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const Profile = () => {
+  const config = useContext(ApiContext);
+  console.log('config', config);
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
   const [userMetadata, setUserMetadata] = useState(user);
   console.log('user', user)
   useEffect(() => {
     console.log('user2222', user)
     const getUserMetadata = async (user: any) => {  
-      // try {
+      const { audience } = config;
+
+      try {
         const accessToken = await getAccessTokenSilently({
-          audience: "TBD",
+          audience,
           scope: "read:signs",
         });
 
         console.log('accessToken', accessToken)
-
         console.log('user-------->', user)
   
         const metadataResponse = await fetch(`https://local.auth:4000/check`, {
@@ -31,13 +35,13 @@ const Profile = () => {
         const { user_metadata } = await metadataResponse.json();
   
         setUserMetadata(user_metadata);
-      // } catch (e) {
-      //   console.log(e.message);
-      // }
+      } catch (e) {
+        console.log(e.message);
+      }
     };
   
     getUserMetadata(user);
-  }, [user]);
+  }, [getAccessTokenSilently, config, user]);
 
   if (isLoading) {
     return <div>Loading ...</div>;
