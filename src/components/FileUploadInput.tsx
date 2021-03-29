@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { ApiContext } from '../ApiContext';
 // import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import axios from 'axios';
 
@@ -81,6 +82,7 @@ import axios from 'axios';
 
 
 const  FileUploadInput = () => {
+    const config = useContext(ApiContext);
     const [file, setFile] = useState(''); // storing the uploaded file    // storing the recived file from backend
     const [data, getFile] = useState({ name: "", path: "" });    const [progress, setProgess] = useState(0); // progess bar
     // const el = useRef(); // accesing input element
@@ -91,8 +93,10 @@ const  FileUploadInput = () => {
         setFile(file); // storing file
     }
     const uploadFile = () => {
-        const formData = new FormData();        formData.append('file', file); // appending file
-        axios.post('https://local.auth:4000/signs/upload', formData, {
+        const { apiBaseUrl } = config;
+        const formData = new FormData();
+        formData.append('file', file); // appending file
+        axios.post(`${apiBaseUrl}/signs/upload`, formData, {
             onUploadProgress: (ProgressEvent) => {
                 let progress: any = Math.round(
                 ProgressEvent.loaded / ProgressEvent.total * 100) + '%';
@@ -101,8 +105,8 @@ const  FileUploadInput = () => {
         }).then(res => {
             console.log(res);
             getFile({ name: res.data.name,
-                     path: 'https://local.auth:4000/signs/upload' + res.data.path
-                   })
+                path: `${apiBaseUrl}/signs/upload` + res.data.path
+            })
         }).catch(err => console.log(err))}
     return (
         <div>
