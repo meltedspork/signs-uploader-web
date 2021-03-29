@@ -1,10 +1,12 @@
 import React from 'react';
 
 const configData = {
-  audience: '',
-  client_id: '',
-  domain: '',
+  apiBaseUrl: '',
+  data: {
+    audience: '',
+    clientId: '',
+    domain: '',
+  }
 };
 
 export const ApiContext = React.createContext(configData);
-

@@ -12,7 +12,12 @@ const Profile = () => {
     console.log('user2222', user)
     // console.log('this.context', this.context);
     const getUserMetadata = async (user: any) => {
-      const { audience } = config;
+      const {
+        apiBaseUrl,
+        data: {
+          audience
+        }
+      } = config;
 
       // try {
         const accessToken = await getAccessTokenSilently({
@@ -23,7 +28,7 @@ const Profile = () => {
         console.log('accessToken', accessToken)
         console.log('user-------->', user)
   
-        const userDetailsByIdUrl = `https://local.auth:4000/test`;
+        const userDetailsByIdUrl = `${apiBaseUrl}/test`;
   
         const metadataResponse = await fetch(userDetailsByIdUrl, {
           credentials: 'include',
