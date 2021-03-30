@@ -7,11 +7,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { Auth0Provider } from '@auth0/auth0-react';
-import { Router } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import { BrowserRouter } from 'react-router-dom';
 import { ApiContext } from './ApiContext';
-
-const history = createBrowserHistory();
 
 const apiBaseUrl: any = process.env.REACT_APP_API_BASE_URL;
 
@@ -27,7 +24,7 @@ function renderApp(configJson: {
 
   ReactDOM.render(
     <React.StrictMode>
-      <Router history={history}>
+      <BrowserRouter>
         <Auth0Provider
           domain={domain}
           clientId={clientId}
@@ -37,7 +34,7 @@ function renderApp(configJson: {
             <App />
           </ApiContext.Provider>
         </Auth0Provider>
-      </Router>
+      </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
   );

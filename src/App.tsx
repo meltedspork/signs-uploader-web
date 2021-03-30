@@ -15,17 +15,13 @@ function App() {
   return (
     <Fragment>
       <NavigationBar />
-      <div className="App">
-        <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/check" component={Check} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/sign" component={CreateSign} />
-          </Switch>
-        </header>
-      </div>
+      <br />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/check" component={Check} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/sign" component={CreateSign} />
+      </Switch>
     </Fragment>
   );
 }
