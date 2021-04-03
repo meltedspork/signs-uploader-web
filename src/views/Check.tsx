@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { ApiContext } from '../ApiContext';
+import ApiContext from '../providers/ApiContext';
 import { Redirect } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 

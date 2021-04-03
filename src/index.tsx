@@ -1,42 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import { BrowserRouter } from 'react-router-dom';
+import AuthorizedApolloProvider from './providers/AuthorizedApolloProvider';
+import ApiContextProvider from './providers/ApiContextProvider';
+import CustomAuth0Provider from './providers/CustomAuth0Provider';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
-import { Auth0Provider } from '@auth0/auth0-react';
-import { BrowserRouter } from 'react-router-dom';
-import { ApiContext } from './ApiContext';
 
 const apiBaseUrl: any = process.env.REACT_APP_API_BASE_URL;
 
 function renderApp(configJson: {
   apiBaseUrl: string,
   data: {
-    domain: string,
-    clientId: string,
     audience: string,
+    clientId: string,
+    domain: string,
+    redirectUri: string,
   }
 }) {
-  const { audience, clientId, domain } = configJson.data;
+  const { apiBaseUrl, data } = configJson;
 
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
-        <Auth0Provider
-          domain={domain}
-          clientId={clientId}
-          redirectUri={window.location.origin}
-          audience={audience}>
-          <ApiContext.Provider value={configJson}>
-            <App />
-          </ApiContext.Provider>
-        </Auth0Provider>
+        <CustomAuth0Provider config={data}>
+          <ApiContextProvider config={configJson}>
+            <AuthorizedApolloProvider apiBaseUrl={apiBaseUrl}>
+              <App />
+            </AuthorizedApolloProvider>
+          </ApiContextProvider>
+        </CustomAuth0Provider>
       </BrowserRouter>
     </React.StrictMode>,
-    document.getElementById('root')
+    document.getElementById('root'),
   );
 };
 
@@ -48,6 +46,7 @@ fetch(`${apiBaseUrl}/config.json`, {
     audience,
     client_id: clientId,
     domain,
+    redirect_uri: redirectUri,
   } = data
   renderApp({
     apiBaseUrl,
@@ -55,6 +54,7 @@ fetch(`${apiBaseUrl}/config.json`, {
       audience,
       clientId,
       domain,
+      redirectUri,
     },
   });
 });

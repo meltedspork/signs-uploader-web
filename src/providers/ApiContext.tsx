@@ -9,4 +9,6 @@ const configData = {
   }
 };
 
-export const ApiContext = React.createContext(configData);
+const ApiContext = React.createContext(configData);
+
+export default ApiContext;
