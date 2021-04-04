@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -50,41 +50,6 @@ const NavigationBar = () => {
         }
       </Navbar.Collapse>
     </Navbar>
-
-
-    // <div>
-    //   <Navbar color="light" light expand="md">
-    //     <NavbarBrand href="/">Signs Uploader</NavbarBrand>
-    //     <NavbarToggler onClick={toggle} />
-    //     <Collapse isOpen={isOpen} navbar>
-    //       <Nav className="mr-auto" navbar>
-    //         {!isAuthenticated ||
-    //           <Fragment>
-    //             <NavItem>
-    //               <NavLink href="/check">Check</NavLink>
-    //             </NavItem>
-    //             <NavItem>
-    //               <NavLink href="/sign">Add Sign</NavLink>
-    //             </NavItem>
-    //             <NavItem>
-    //               <NavLink href="/profile">Profile</NavLink>
-    //             </NavItem>
-    //             <NavItem>
-    //               <NavLink href="#" onClick={() => logout({ returnTo: window.location.origin })}>Log out</NavLink>
-    //             </NavItem>
-    //           </Fragment>
-    //         }
-    //       </Nav>
-    //       <NavbarText>
-    //       {!isAuthenticated ?
-    //           <NavLink href="#" onClick={() => loginWithRedirect()}>Log in</NavLink>
-    //           :
-    //           <NavLink href="#" onClick={() => logout({ returnTo: window.location.origin })}>Log out</NavLink>
-    //         }
-    //       </NavbarText>
-    //     </Collapse>
-    //   </Navbar>
-    // </div>
   );
 }
 

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import Button from 'react-bootstrap/Button';
 import AllSigns from '../../graphql/AllSigns';
 

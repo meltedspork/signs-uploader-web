@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 
-const SignForm = (props: any) => {
-  const [title, setTitle] = useState();
-  const [pronounce, setPronounce] = useState();
-  const [definition, setDefinition] = useState();
+const SignForm = ({ children, state, updateAddSignState }: any) => {
+  const {
+    title,
+    pronounce,
+    definition,
+  } = state;
+  const [localTitle, setTitle] = useState('');
+  const [localPronounce, setPronounce] = useState('');
+  const [localDefinition, setDefinition] = useState('');
 
-  const onClickHandler = (e: any) => {
-    //addChoreLog([choreDesc, name, date])
-    e.preventDefault();
-  }
+  useEffect(() => {
+    updateAddSignState({
+      title: localTitle,
+      pronounce: localPronounce,
+      definition: localDefinition,
+    });
+  }, [updateAddSignState, localTitle, localPronounce, localDefinition]);
 
   return (
     <Form>
@@ -29,9 +36,7 @@ const SignForm = (props: any) => {
         <Form.Control value={definition} onChange={(e: any) => setDefinition(e.target.value)}  type="text" placeholder="Sign Definition" />
       </Form.Group>
 
-      <Button variant="primary" type="button" onClick={onClickHandler}>
-        Submit
-      </Button>
+      {children}
     </Form>
   );
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import ApiContext from './ApiContext';
 
 const ApiContextProvider = (props: any) => {

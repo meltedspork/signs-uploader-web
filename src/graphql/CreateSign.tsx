@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import Button from 'react-bootstrap/Button';
 import { gql, useMutation } from '@apollo/client';
 
 const CREATE_SIGN = gql`
@@ -21,40 +21,35 @@ mutation CreateSign(
 }
 `;
 
-const CreateSign = (props: any) => {
-  console.log('AHHHHH props', props);
-  // return <h1>Testing...</h1>
+const CreateSign = ({ state, updateAddSignState }: any) => {
+  const [createNewSign] = useMutation(CREATE_SIGN);
+  const {
+    title,
+    pronounce,
+    definition,
+  } = state;
 
-  if (!props.newData) return <h1>Loading...</h1>;
+  const onClickCreateNewSign = (e: any) => {
+    e.preventDefault();
+    createNewSign({
+      variables: {
+        title,
+        pronounce,
+        definition,
+      },
+    });
+    updateAddSignState({
+      title: '',
+      pronounce: '',
+      definition: '',
+    });
+  }
 
-  return <h1>Testing...</h1>;
-  // const {
-  //   title,
-  //   pronounce,
-  //   definition,
-  // } = props;
-
-  // let input;
-  // const [addSign, { data }] = useMutation(CREATE_SIGN);
-
-  // return (
-  //   <div>
-  //     <form
-  //       onSubmit={e => {
-  //         e.preventDefault();
-  //         addTodo({ variables: { type: input.value } });
-  //         input.value = '';
-  //       }}
-  //     >
-  //       <input
-  //         ref={node => {
-  //           input = node;
-  //         }}
-  //       />
-  //       <button type="submit">Add Todo</button>
-  //     </form>
-  //   </div>
-  // );
+  return (
+    <Button variant="primary" type="button" onClick={onClickCreateNewSign}>
+      Submit
+    </Button>
+  );
 }
 
 export default CreateSign;

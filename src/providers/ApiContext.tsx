@@ -1,4 +1,4 @@
-import React from 'react';
+import { createContext } from 'react';
 
 const configData = {
   apiBaseUrl: '',
@@ -9,6 +9,6 @@ const configData = {
   }
 };
 
-const ApiContext = React.createContext(configData);
+const ApiContext = createContext(configData);
 
 export default ApiContext;

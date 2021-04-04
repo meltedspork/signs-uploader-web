@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { gql, useQuery } from '@apollo/client';
 
 const ALL_SIGNS = gql`
@@ -12,10 +12,6 @@ const ALL_SIGNS = gql`
 
 const AllSigns = () => {
   const { loading, error, data } = useQuery(ALL_SIGNS);
-
-  console.log('loading:', loading);
-  console.log('error:', error);
-  console.log('data:', data);
 
   if (loading) return <Fragment>Loading...</Fragment>;
   if (error) return <Fragment>Error! {error.message}</Fragment>
