@@ -1,4 +1,5 @@
-import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { createUploadLink } from 'apollo-upload-client';
 import { setContext } from '@apollo/client/link/context';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -10,17 +11,20 @@ const AuthorizedApolloProvider = (props: any) => {
 
   const { getAccessTokenSilently } = useAuth0();
 
-  const httpLink = createHttpLink({
+  const httpLink = createUploadLink({
     uri: `${apiBaseUrl}/graphql`,
+    credentials: 'include',
   });
 
-  const authLink = setContext(async () => {
+  const authLink = setContext(async (request, previousContext) => {
     const accessToken = await getAccessTokenSilently();
 
     return {
+      credentials: 'include',
       headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
+        Authorization: `Bearer ${accessToken}`,
+        credentials: 'include',
+      },
     };
   });
 

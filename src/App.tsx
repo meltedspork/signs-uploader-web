@@ -5,7 +5,8 @@ import NavigationBar from './components/NavigationBar';
 import Home from './views/Home';
 
 import Check from './views/Check';
-import Signs from './views/sign/Signs';
+import AllSigns from './views/sign/AllSigns';
+import ViewSign from './views/sign/ViewSign';
 import AddSign from './views/sign/AddSign';
 import Profile from './views/Profile';
 
@@ -21,7 +22,8 @@ function App() {
         <Route path="/" exact component={Home} />
         <Route path="/check" component={Check} />
         <Route path="/profile" component={Profile} />
-        <Route path="/signs" component={Signs} />
+        <Route path="/all-signs" component={AllSigns} />
+        <Route path="/view-sign/:uid" component={ViewSign} />
         <Route path="/add-sign" component={AddSign} />
       </Switch>
     </Fragment>

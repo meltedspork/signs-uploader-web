@@ -3,21 +3,26 @@ import Form from 'react-bootstrap/Form';
 
 const SignForm = ({ children, state, updateAddSignState }: any) => {
   const {
+    videoFile,
     title,
     pronounce,
     definition,
   } = state;
+  const videoLabel = (videoFile || { name: null }).name || 'Sign Video';
+
+  const [localVideoFile, setVideoFile] = useState(null);
   const [localTitle, setTitle] = useState('');
   const [localPronounce, setPronounce] = useState('');
   const [localDefinition, setDefinition] = useState('');
 
   useEffect(() => {
     updateAddSignState({
+      videoFile: localVideoFile,
       title: localTitle,
       pronounce: localPronounce,
       definition: localDefinition,
     });
-  }, [updateAddSignState, localTitle, localPronounce, localDefinition]);
+  }, [updateAddSignState, localVideoFile, localTitle, localPronounce, localDefinition]);
 
   return (
     <Form>
@@ -33,8 +38,10 @@ const SignForm = ({ children, state, updateAddSignState }: any) => {
 
       <Form.Group controlId="signDefinition">
         <Form.Label>Definition</Form.Label>
-        <Form.Control value={definition} onChange={(e: any) => setDefinition(e.target.value)}  type="text" placeholder="Sign Definition" />
+        <Form.Control value={definition} onChange={(e: any) => setDefinition(e.target.value)} type="text" placeholder="Sign Definition" />
       </Form.Group>
+
+      <Form.File onChange={(e: any) => setVideoFile(e.target.files[0])} label={videoLabel} data-browse="Upload" custom />
 
       {children}
     </Form>

@@ -1,6 +1,5 @@
 import { Component, Fragment } from 'react';
 import SignForm from '../../components/SignForm';
-// import FileUploadInput from '../../components/FileUploadInput';
 import CreateSign from '../../graphql/CreateSign';
 
 class AddSign extends Component {
@@ -8,6 +7,7 @@ class AddSign extends Component {
     super(props);
 
     this.state = {
+      videoFile: null,
       title: '',
       pronounce: '',
       definition: '',
@@ -15,20 +15,24 @@ class AddSign extends Component {
   }
 
   _updateState = ({
+    videoFile,
     title,
     pronounce,
     definition,
   }: {
+    videoFile: any,
     title: string,
     pronounce: string,
     definition: string,
   }) => {
     console.log({
+      videoFile,
       title,
       pronounce,
       definition,
     });
     this.setState({
+      videoFile,
       title,
       pronounce,
       definition,
@@ -38,7 +42,6 @@ class AddSign extends Component {
   render() {
     return (
       <Fragment>
-        {/* <FileUploadInput /> */}
         <SignForm state={this.state} updateAddSignState={this._updateState}>
           <CreateSign state={this.state} updateAddSignState={this._updateState} />
         </SignForm>
