@@ -23,9 +23,6 @@ const NavigationBar = () => {
         {isAuthenticated ?
           <Fragment>
             <Nav className="mr-auto">
-              <NavLink to="/check" className="nav-link">
-                Check
-              </NavLink>
               <NavLink to="/all-signs" className="nav-link">
                 Signs
               </NavLink>

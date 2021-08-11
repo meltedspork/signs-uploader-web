@@ -42,9 +42,9 @@ class AddSign extends Component {
   render() {
     return (
       <Fragment>
-        <SignForm state={this.state} updateAddSignState={this._updateState}>
+        {/* <SignForm state={this.state} updateAddSignState={this._updateState}>
           <CreateSign state={this.state} updateAddSignState={this._updateState} />
-        </SignForm>
+        </SignForm> */}
       </Fragment>
     );
   }

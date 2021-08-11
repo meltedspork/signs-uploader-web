@@ -1,4 +1,4 @@
-import ApiContext from './ApiContext';
+import ApiContext from '../contexts/ApiContext';
 
 const ApiContextProvider = (props: any) => {
   const {

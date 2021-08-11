@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import ApiContext from '../providers/ApiContext';
+import ApiContext from '../contexts/ApiContext';
 import { Redirect } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -28,7 +28,7 @@ const Profile = () => {
         console.log('accessToken', accessToken)
         console.log('user-------->', user)
   
-        const userDetailsByIdUrl = `${apiBaseUrl}/test`;
+        const userDetailsByIdUrl = `${apiBaseUrl}/test_jwt`;
   
         const metadataResponse = await fetch(userDetailsByIdUrl, {
           credentials: 'include',
