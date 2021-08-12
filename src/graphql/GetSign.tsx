@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import SignContext from '../contexts/SignContext';
+import SignProvider from '../providers/SignProvider';
 import { gql, useQuery } from '@apollo/client';
 
 const GET_SIGN = gql`
@@ -51,15 +51,9 @@ const GetSign = ({ children, uid }: any) => {
   }
 
   return (
-    <SignContext.Provider value={signContextValues}>
-      <SignContext.Consumer>
-        {(context) => (
-          <Fragment>
-            {children}
-          </Fragment>
-        )}
-      </SignContext.Consumer>
-    </SignContext.Provider>
+    <SignProvider values={signContextValues}>
+      {children}
+    </SignProvider>
   );
 }
 

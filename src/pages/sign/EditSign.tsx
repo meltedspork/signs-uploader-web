@@ -3,7 +3,7 @@ import GetSign from '../../graphql/GetSign';
 import SignForm from '../../components/SignForm';
 import Button from 'react-bootstrap/Button';
 
-const ViewSign = (props: any) => {
+const EditSign = (props: any) => {
   const { uid } = props.match.params;
   const history = useHistory();
 
@@ -23,4 +23,4 @@ const ViewSign = (props: any) => {
   )
 }
 
-export default ViewSign;
+export default EditSign;
