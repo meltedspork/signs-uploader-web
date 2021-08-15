@@ -7,7 +7,6 @@ import Home from './pages/Home';
 import AllSigns from './pages/sign/AllSigns';
 import AddSign from './pages/sign/AddSign';
 import ViewSign from './pages/sign/ViewSign';
-import EditSign from './pages/sign/EditSign';
 import Profile from './pages/Profile';
 
 // import logo from './logo.svg';
@@ -23,7 +22,6 @@ function App() {
         <Route path="/all-signs" component={AllSigns} />
         <Route path="/add-sign" component={AddSign} />
         <Route path="/view-sign/:uid" component={ViewSign} />
-        <Route path="/edit-sign/:uid" component={EditSign} />
         <Route path="/profile" component={Profile} />
       </Switch>
     </Fragment>
