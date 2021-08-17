@@ -8,7 +8,8 @@ const SignForm = ({ children }: any) => {
     setSignData,
     readOnly,
   } = useContext(SignContext);
-  console.log('signData', signData);
+  console.log('SignForm >> signData', signData);
+
   const {
     videoFile = null,
     title = '',
@@ -24,17 +25,29 @@ const SignForm = ({ children }: any) => {
   const [localDefinition, setLocalDefinition] = useState(definition);
 
   useEffect(() => {
-    const updatedLocalState = Object.assign(
-      signData,
-      {
+    if (readOnly) {
+      setSignData(signData);
+      // setLocalVideoFile(signData.videoFile);
+      setLocalTitle(signData.title);
+      setLocalPronounce(signData.pronounce);
+      setLocalDefinition(signData.definition);
+    } else {
+      const updatedSignData = Object.assign(signData, {
         videoFile: localVideoFile,
         title: localTitle,
         pronounce: localPronounce,
         definition: localDefinition,
-      }
-    );
-    setSignData(updatedLocalState);
-  }, [setSignData, signData, localVideoFile, localTitle, localPronounce, localDefinition]);
+      });
+      setSignData(updatedSignData);
+    }
+  }, [
+    readOnly,
+    setSignData, signData,
+    setLocalVideoFile, localVideoFile,
+    setLocalTitle, localTitle,
+    setLocalPronounce, localPronounce,
+    setLocalDefinition, localDefinition,
+  ]);
 
   return (
     <Form>

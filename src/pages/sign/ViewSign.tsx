@@ -93,15 +93,16 @@ const ViewSign = (props: any) => {
       definition,
     } 
   } = data;
-  const initSignData = {
+  const initSignData: any = {
     uid,
     videoFile,
     title,
     pronounce,
     definition,
   }
+  // setFetchedSignData(initSignData);
 
-  console.log('ViewSign: signData --->>>> ', signData);
+  // console.log('ViewSign: signData --->>>> ', signData);
 
   const onClickEditSign = async (e: any) => {
     e.preventDefault();
@@ -110,6 +111,8 @@ const ViewSign = (props: any) => {
 
   const onClickCancelEditSign = async (e: any) => {
     e.preventDefault();
+    console.log('initSignData _____', initSignData);
+    setSignData(initSignData);
     setReadOnly(true);
   }
 
@@ -130,13 +133,14 @@ const ViewSign = (props: any) => {
   return (
     <SignContext.Provider value={signContextValues}>
       <SignContext.Consumer>
-        {(context) => (
+        {(_context) => (
           <SignForm>
             {readOnly
               ? <Button variant="primary" type="button" onClick={onClickEditSign}>
                 Edit
               </Button>
               : <Fragment>
+                <br /><br />
                 <Button variant="secondary" type="button" onClick={onClickUpdateSign}>
                   Update
                 </Button>{' '}
