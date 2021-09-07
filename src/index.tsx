@@ -8,6 +8,12 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// replace console.* for disable log on production
+if (process.env.NODE_ENV === 'production') {
+  console.log = () => {};
+  console.debug = () => {};
+}
+
 const apiBaseUrl: any = process.env.REACT_APP_API_BASE_URL;
 
 function renderApp(configJson: {
