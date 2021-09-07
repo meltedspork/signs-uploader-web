@@ -35,6 +35,8 @@ const SignForm = ({ children }: any) => {
     };
     setInputSignData(updatedSignData);
   }, [
+    loading,
+    error,
     readOnly,
     signData,
     setInputSignData,

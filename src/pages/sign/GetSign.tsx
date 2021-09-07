@@ -54,7 +54,7 @@ const GetSign = () => {
       setSignData(signData);
       setInputSignData(signData);
     }
-  }, [setLoading, setError, setSignData, setInputSignData, data]);
+  }, [loading, error, uid, setLoading, setError, setSignData, setInputSignData, data]);
 
   return <Fragment />;
 }

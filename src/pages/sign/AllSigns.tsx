@@ -22,14 +22,14 @@ const _getAllSigns = () => {
   } = useQuery(ALL_SIGNS);
 
   useEffect(() => {
-    // setLoading(loading);
-    // setError(error);
-
     if (data) {
       const { allSigns } = data;
       setAllSigns(allSigns);
     }
   }, [data]);
+
+  if (loading) return <Fragment>loading...</Fragment>;
+  if (error) return <Fragment>Error: {JSON.stringify(error)}</Fragment>;
 
   return (
     <Table striped bordered hover size="sm">
@@ -41,7 +41,7 @@ const _getAllSigns = () => {
       </thead>
       <tbody>
         {allSigns.map((sign: any, index: number) => (
-          <tr key={index} onClick={() => { history.push(`/view-sign/${sign.uid}`) }}>
+          <tr key={index} onClick={() => { history.push(`/sign/${sign.uid}`) }}>
             <td>{sign.uid}</td>
             <td>{sign.title}</td>
           </tr>
