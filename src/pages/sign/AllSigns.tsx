@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { gql, useQuery } from '@apollo/client';
 import Table from 'react-bootstrap/Table';
@@ -14,14 +14,22 @@ const ALL_SIGNS = gql`
 
 const _getAllSigns = () => {
   const history = useHistory();
+  const [allSigns, setAllSigns] = useState([]);
   const {
     loading,
     error,
-    data: signs
+    data,
   } = useQuery(ALL_SIGNS);
 
-  if (loading) return <Fragment>Loading...</Fragment>;
-  if (error) return <Fragment>Error! {error.message}</Fragment>
+  useEffect(() => {
+    // setLoading(loading);
+    // setError(error);
+
+    if (data) {
+      const { allSigns } = data;
+      setAllSigns(allSigns);
+    }
+  }, [data]);
 
   return (
     <Table striped bordered hover size="sm">
@@ -32,7 +40,7 @@ const _getAllSigns = () => {
         </tr>
       </thead>
       <tbody>
-        {signs.allSigns.map((sign: any, index: number) => (
+        {allSigns.map((sign: any, index: number) => (
           <tr key={index} onClick={() => { history.push(`/view-sign/${sign.uid}`) }}>
             <td>{sign.uid}</td>
             <td>{sign.title}</td>

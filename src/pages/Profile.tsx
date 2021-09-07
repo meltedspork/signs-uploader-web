@@ -43,7 +43,7 @@ const Profile = () => {
   
        setUserMetadata(user_metadata);
       } catch (e) {
-        console.log(e.message);
+        console.log(e);
       }
     };
   
@@ -51,11 +51,11 @@ const Profile = () => {
   }, [getAccessTokenSilently, config, user]);
 
   if (isLoading) {
-    return <div>Loading ...</div>;
+    return <div>Loading...</div>;
   }
 
   return (
-    isAuthenticated ? (
+    isAuthenticated && user ? (
       <div>
         <img src={user.picture} alt={user.name} />
         <h2>{user.name}</h2>

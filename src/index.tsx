@@ -4,8 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import AuthorizedApolloProvider from './providers/AuthorizedApolloProvider';
 import ApiContextProvider from './providers/ApiContextProvider';
 import CustomAuth0Provider from './providers/CustomAuth0Provider';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
+import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

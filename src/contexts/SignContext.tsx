@@ -5,7 +5,6 @@ interface ISignDataKeys {
 }
 
 interface ISignDataProps extends ISignDataKeys {
-  uid: string,
   videoFile: any,
   title: string,
   pronounce: string,
@@ -13,21 +12,40 @@ interface ISignDataProps extends ISignDataKeys {
 };
 
 interface IContextProps {
+  uid: string,
+  setUid: Function,
   signData: ISignDataProps,
   setSignData: Function,
+  inputSignData: ISignDataProps,
+  setInputSignData: Function,
   readOnly: boolean,
+  setReadOnly: Function,
+  loading: boolean,
+  setLoading: Function,
+  error: any,
+  setError: Function,
 }
 
+const signData = {
+  videoFile: null,
+  title: '',
+  pronounce: '',
+  definition: '',
+};
+
 const SignContext = createContext({
-  signData: {
-    uid: '',
-    videoFile: null,
-    title: '',
-    pronounce: '',
-    definition: '',
-  },
-  setSignData: () => {},
+  loading: true,
+  setLoading: () => {},
+  error: null,
+  setError: () => {},
   readOnly: false,
+  setReadOnly: () => {},
+  uid: '',
+  setUid: () => {},
+  signData,
+  setSignData: () => {},
+  inputSignData: signData,
+  setInputSignData: () => {},
 } as IContextProps);
 
 export default SignContext;
