@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col';
 import NavigationBar from './components/NavigationBar';
 import Home from './pages/Home';
 
-import AllSigns from './pages/sign/AllSigns';
+import Signs from './pages/sign/Signs';
 import Sign from './pages/sign/Sign';
 import Profile from './pages/Profile';
 
@@ -29,7 +29,7 @@ function App() {
             <Col>
               <Switch>
                 <Route path="/" exact component={Home} />
-                <Route path="/signs" component={AllSigns} />
+                <Route path="/signs" component={Signs} />
                 <Route path="/sign/:uid" component={Sign} />
                 <Route path="/sign" component={Sign} />
                 <Route path="/profile" component={Profile} />

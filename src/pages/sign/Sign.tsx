@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import SignContext from '../../contexts/SignContext';
-import AddSign from './AddSign';
-import GetSign from './GetSign';
-import UpdateSign from './UpdateSign';
+import AddSign from '../../components/graphql/AddSign';
+import GetSign from '../../components/graphql/GetSign';
+import UpdateSign from '../../components/graphql/UpdateSign';
 import SignForm from '../../components/SignForm';
 
 const Sign = ({ history, match }: any) => {
