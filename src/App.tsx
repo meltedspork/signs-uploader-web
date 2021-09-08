@@ -9,8 +9,8 @@ import Col from 'react-bootstrap/Col';
 import NavigationBar from './components/NavigationBar';
 import Home from './pages/Home';
 
-import Signs from './pages/sign/Signs';
-import Sign from './pages/sign/Sign';
+import Signs from './pages/Signs';
+import Sign from './pages/Sign';
 import Profile from './pages/Profile';
 
 // import logo from './logo.svg';

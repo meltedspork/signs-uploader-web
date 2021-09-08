@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react';
-import SignsContext from '../../contexts/SignsContext';
-import AllSigns from '../../components/graphql/AllSigns';
-import SignsTable from '../../components/SignsTable';
+import SignsContext from '../contexts/SignsContext';
+import AllSigns from '../components/graphql/AllSigns';
+import SignsTable from '../components/SignsTable';
 
 const Signs = ({ history }: any) => {
   const [loading, setLoading] = useState(true);
