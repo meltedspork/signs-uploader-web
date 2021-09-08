@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import classNames from  'classnames';
 import SignContext from '../contexts/SignContext';
+import Textfield from './inputs/Textfield';
 import Form from 'react-bootstrap/Form';
 
 const SignForm = ({ children }: any) => {
@@ -14,24 +15,25 @@ const SignForm = ({ children }: any) => {
 
   const videoLabel = /*(signData.videoFile || { name: null }).name ||*/ 'Sign Video';
 
-  const [localVideoFile, setLocalVideoFile] = useState(null);
-  const [localTitle, setLocalTitle] = useState('');
-  const [localPronounce, setLocalPronounce] = useState('');
-  const [localDefinition, setLocalDefinition] = useState('');
+  const [inputVideoFile, setInputVideoFile] = useState(null);
+  const [inputVideoUrl, setInputVideoUrl] = useState('');
+  const [inputTitle, setInputTitle] = useState('');
+  const [inputPronounce, setInputPronounce] = useState('');
+  const [inputDefinition, setInputDefinition] = useState('');
 
   useEffect(() => {
     if (loading || error) return;
 
     if (readOnly) {
-      setLocalTitle(signData.title);
-      setLocalPronounce(signData.pronounce);
-      setLocalDefinition(signData.definition);
+      setInputTitle(signData.title);
+      setInputPronounce(signData.pronounce);
+      setInputDefinition(signData.definition);
     }
     const updatedSignData = {
-      videoFile: localVideoFile,
-      title: localTitle,
-      pronounce: localPronounce,
-      definition: localDefinition,
+      videoFile: inputVideoFile,
+      title: inputTitle,
+      pronounce: inputPronounce,
+      definition: inputDefinition,
     };
     setInputSignData(updatedSignData);
   }, [
@@ -40,32 +42,21 @@ const SignForm = ({ children }: any) => {
     readOnly,
     signData,
     setInputSignData,
-    setLocalVideoFile, localVideoFile,
-    setLocalTitle, localTitle,
-    setLocalPronounce, localPronounce,
-    setLocalDefinition, localDefinition,
+    setInputVideoFile, inputVideoFile,
+    setInputTitle, inputTitle,
+    setInputPronounce, inputPronounce,
+    setInputDefinition, inputDefinition,
   ]);
 
   return (
     <Form className={classNames({ loading: loading })}>
-      <Form.Group controlId="signTitle">
-        <Form.Label>Title</Form.Label>
-        <Form.Control value={localTitle} plaintext={readOnly} readOnly={readOnly} onChange={(e: any) => setLocalTitle(e.target.value)} type="text" placeholder="Sign Title" />
-      </Form.Group>
+      <Textfield label="Title" value={inputTitle} onChange={setInputTitle} readOnly={readOnly} />
+      <Textfield label="Pronounce" value={inputPronounce} onChange={setInputPronounce} readOnly={readOnly} />
+      <Textfield label="Definition" value={inputDefinition} onChange={setInputDefinition} readOnly={readOnly} />
 
-      <Form.Group controlId="signPronounce">
-        <Form.Label>Pronounce</Form.Label>
-        <Form.Control value={localPronounce} plaintext={readOnly} readOnly={readOnly} onChange={(e: any) => setLocalPronounce(e.target.value)} type="text" placeholder="Sign Pronounce" />
-      </Form.Group>
-
-      <Form.Group controlId="signDefinition">
-        <Form.Label>Definition</Form.Label>
-        <Form.Control value={localDefinition} plaintext={readOnly} readOnly={readOnly} onChange={(e: any) => setLocalDefinition(e.target.value)} type="text" placeholder="Sign Definition" />
-      </Form.Group>
-
-      {!readOnly &&
-        <Form.File onChange={(e: any) => setLocalVideoFile(e.target.files[0])} label={videoLabel} data-browse="Upload" custom />
-      }
+      {!readOnly ?
+        <Form.File onChange={(e: any) => setInputVideoFile(e.target.files[0])} label={videoLabel} data-browse="Upload" custom />
+      : !!inputVideoUrl && <img src={inputVideoUrl} alt="loading..." />}
 
       {children}
     </Form>
