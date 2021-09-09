@@ -1,7 +1,8 @@
-import { useEffect, useState, useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import classNames from  'classnames';
 import SignContext from '../contexts/SignContext';
 import Textfield from './inputs/Textfield';
+import Videofield from './inputs/Videofield';
 import Form from 'react-bootstrap/Form';
 
 const SignForm = ({ children }: any) => {
@@ -11,12 +12,11 @@ const SignForm = ({ children }: any) => {
     signData,
     setInputSignData,
     readOnly,
+    reset,
+    setReset,
   } = useContext(SignContext);
 
-  const videoLabel = /*(signData.videoFile || { name: null }).name ||*/ 'Sign Video';
-
   const [inputVideoFile, setInputVideoFile] = useState(null);
-  const [inputVideoUrl, setInputVideoUrl] = useState('');
   const [inputTitle, setInputTitle] = useState('');
   const [inputPronounce, setInputPronounce] = useState('');
   const [inputDefinition, setInputDefinition] = useState('');
@@ -28,6 +28,12 @@ const SignForm = ({ children }: any) => {
       setInputTitle(signData.title);
       setInputPronounce(signData.pronounce);
       setInputDefinition(signData.definition);
+    } else if (reset) {
+      setInputVideoFile(null);
+      setInputTitle('');
+      setInputPronounce('');
+      setInputDefinition('');
+      setReset(false);
     }
     const updatedSignData = {
       videoFile: inputVideoFile,
@@ -37,6 +43,7 @@ const SignForm = ({ children }: any) => {
     };
     setInputSignData(updatedSignData);
   }, [
+    setReset, reset,
     loading,
     error,
     readOnly,
@@ -53,11 +60,7 @@ const SignForm = ({ children }: any) => {
       <Textfield label="Title" value={inputTitle} onChange={setInputTitle} readOnly={readOnly} />
       <Textfield label="Pronounce" value={inputPronounce} onChange={setInputPronounce} readOnly={readOnly} />
       <Textfield label="Definition" value={inputDefinition} onChange={setInputDefinition} readOnly={readOnly} />
-
-      {!readOnly ?
-        <Form.File onChange={(e: any) => setInputVideoFile(e.target.files[0])} label={videoLabel} data-browse="Upload" custom />
-      : !!inputVideoUrl && <img src={inputVideoUrl} alt="loading..." />}
-
+      <Videofield value={inputVideoFile} onChange={setInputVideoFile} readOnly={readOnly} />
       {children}
     </Form>
   );

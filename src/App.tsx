@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col';
 import NavigationBar from './components/NavigationBar';
 import Home from './pages/Home';
 
+import AddSign from './pages/AddSign';
 import Signs from './pages/Signs';
 import Sign from './pages/Sign';
 import Profile from './pages/Profile';
@@ -30,8 +31,8 @@ function App() {
               <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/signs" component={Signs} />
+                <Route path="/add-sign" component={AddSign} />
                 <Route path="/sign/:uid" component={Sign} />
-                <Route path="/sign" component={Sign} />
                 <Route path="/profile" component={Profile} />
                 </Switch>
             </Col>

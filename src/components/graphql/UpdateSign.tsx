@@ -27,13 +27,12 @@ const UpdateSign = () => {
     setSignData,
     inputSignData,
     setInputSignData,
-    readOnly,
     setReadOnly,
   } = useContext(SignContext);
 
   const [updateSign] = useMutation(UPDATE_SIGN);
 
-  const onClickCancelEditSign = async (e: any) => {
+  const onClickCancelSign = async (e: any) => {
     e.preventDefault();
     setSignData(signData);
     setReadOnly(true);
@@ -68,26 +67,12 @@ const UpdateSign = () => {
     setReadOnly(true);
   }
 
-  const onClickEditSign = async (e: any) => {
-    e.preventDefault();
-    setReadOnly(false);
-  }
-
-  if (readOnly) {
-    return (
-      <Button variant="primary" type="button" onClick={onClickEditSign}>
-        Edit
-      </Button>
-    );
-  }
-
   return (
     <Fragment>
-      <br /><br />
       <Button variant="secondary" type="button" onClick={onClickUpdateSign}>
         Update
       </Button>{' '}
-      <Button variant="danger" type="button" onClick={onClickCancelEditSign}>
+      <Button variant="danger" type="button" onClick={onClickCancelSign}>
         Cancel
       </Button>
     </Fragment>

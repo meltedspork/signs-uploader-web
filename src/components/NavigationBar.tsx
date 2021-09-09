@@ -26,7 +26,7 @@ const NavigationBar = () => {
               <NavLink to="/signs" className="nav-link">
                 Signs
               </NavLink>
-              <NavLink to="/sign" className="nav-link">
+              <NavLink to="/add-sign" className="nav-link">
                 Add Sign
               </NavLink>
             </Nav>

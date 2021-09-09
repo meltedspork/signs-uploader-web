@@ -1,22 +1,17 @@
 import { useState } from 'react';
 import SignContext from '../contexts/SignContext';
-import GetSign from '../components/graphql/GetSign';
-import UpdateSign from '../components/graphql/UpdateSign';
+import CreateSign from '../components/graphql/CreateSign';
 import SignForm from '../components/SignForm';
 
-const Sign = ({ match }: any) => {
-  const {
-    params: {
-      uid: signUid,
-    }
-  } = match;
+const AddSign = ({ history }: any) => {
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [uid, setUid] = useState(signUid);
+  const [uid, setUid] = useState(null);
   const [signData, setSignData] = useState(null);
   const [inputSignData, setInputSignData] = useState(null);
-  const [readOnly, setReadOnly] = useState(true);
+  const [readOnly, setReadOnly] = useState(false);
+  const [reset, setReset] = useState(false);
 
   const signContextValues = {
     loading,
@@ -25,22 +20,22 @@ const Sign = ({ match }: any) => {
     setError,
     readOnly,
     setReadOnly,
-    uid,
+    uid: (uid as any),
     setUid,
     signData: (signData as any),
     setSignData,
     inputSignData: (inputSignData as any),
     setInputSignData,
-    reset: false,
-    setReset: (null as any),
+    reset,
+    setReset,
   };
 
   return (
     <SignContext.Provider value={signContextValues}>
       <SignContext.Consumer>
-        {(context) => (
+        {() => (
           <SignForm>
-            {context.readOnly ? <GetSign /> : <UpdateSign />}
+            <CreateSign history={history} />
           </SignForm>
         )}
       </SignContext.Consumer>
@@ -48,4 +43,4 @@ const Sign = ({ match }: any) => {
   )
 }
 
-export default Sign;
+export default AddSign;

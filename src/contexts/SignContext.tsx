@@ -1,5 +1,12 @@
 import { createContext } from 'react';
 
+const SIGN_DEFAULT_DATA = {
+  videoFile: null,
+  title: '',
+  pronounce: '',
+  definition: '',
+};
+
 interface ISignDataKeys {
   [key: string]: string | any;
 }
@@ -24,14 +31,9 @@ interface IContextProps {
   setLoading: Function,
   error: any,
   setError: Function,
+  reset: boolean,
+  setReset: Function,
 }
-
-const signData = {
-  videoFile: null,
-  title: '',
-  pronounce: '',
-  definition: '',
-};
 
 const SignContext = createContext({
   loading: true,
@@ -42,10 +44,12 @@ const SignContext = createContext({
   setReadOnly: () => {},
   uid: '',
   setUid: () => {},
-  signData,
+  signData: SIGN_DEFAULT_DATA,
   setSignData: () => {},
-  inputSignData: signData,
+  inputSignData: SIGN_DEFAULT_DATA,
   setInputSignData: () => {},
+  reset: false,
+  setReset: () => {},
 } as IContextProps);
 
 export default SignContext;

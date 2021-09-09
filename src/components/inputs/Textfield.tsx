@@ -6,13 +6,21 @@ const Textfield = ({
   readOnly,
   onChange,
 }: any) => {
+  const useInput = {
+    type: 'text',
+    value,
+    label,
+    onChange: (e: any) => onChange(e.target.value),
+    plaintext: readOnly,
+    readOnly,
+  };
 
   return (
     <Form.Group controlId={label}>
       <Form.Label>
         {label}
       </Form.Label>
-      <Form.Control type="text" placeholder={label} value={value} onChange={(e: any) => onChange(e.target.value)} plaintext={readOnly} readOnly={readOnly} />
+      <Form.Control {...useInput} />
     </Form.Group>
   );
 }

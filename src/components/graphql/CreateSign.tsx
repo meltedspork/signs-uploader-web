@@ -3,6 +3,10 @@ import SignContext from '../../contexts/SignContext';
 import { gql, useMutation } from '@apollo/client';
 import Button from 'react-bootstrap/Button';
 
+declare global {
+  interface Window { signForm: any; }
+}
+
 const CREATE_SIGN = gql`
 mutation createSign(
   $signInput: SignInput,
@@ -19,7 +23,7 @@ mutation createSign(
 }
 `;
 
-const AddSign = ({ history }: any) => {
+const CreateSign = ({ history }: any) => {
   const {
     setUid,
     setLoading,
@@ -28,6 +32,7 @@ const AddSign = ({ history }: any) => {
     inputSignData,
     setInputSignData,
     setReadOnly,
+    setReset,
   } = useContext(SignContext);
 
   const [createNewSign] = useMutation(CREATE_SIGN);
@@ -66,19 +71,24 @@ const AddSign = ({ history }: any) => {
     setUid(uid);
     setSignData(createdSign);
     setInputSignData(createdSign);
-    setReadOnly(true);
     history.replace({ pathname: `/sign/${uid}` });
+  }
+
+  const onClickClearSign = async (e: any) => {
+    e.preventDefault();
+    if (setReset) setReset(true);
   }
 
   return (
     <Fragment>
-      <br />
-      <br />
       <Button variant="primary" type="button" onClick={onClickCreateSign}>
         Submit
+      </Button>{' '}
+      <Button variant="danger" type="button" onClick={onClickClearSign}>
+        Clear
       </Button>
     </Fragment>
   )
 }
 
-export default AddSign;
+export default CreateSign;

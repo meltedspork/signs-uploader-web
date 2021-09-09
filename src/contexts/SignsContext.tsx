@@ -1,5 +1,10 @@
 import { createContext } from 'react';
 
+const SIGNS_DEFAULT_DATA = {
+  uid: '',
+  title: '',
+};
+
 interface ISignDataKeys {
   [key: string]: string | any;
 }
@@ -23,10 +28,7 @@ const SignsContext = createContext({
   setLoading: () => {},
   error: null,
   setError: () => {},
-  signs: [{
-    uid: '',
-    title: '',
-  }],
+  signs: [SIGNS_DEFAULT_DATA],
   setSigns: () => {},
 } as IContextProps);
 
