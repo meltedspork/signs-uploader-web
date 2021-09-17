@@ -12,7 +12,7 @@ mutation updateSign(
     uid: $uid,
     signInput: $signInput,
   ) {
-    videoUrl
+    videoUrls
     title
     pronounce
     definition

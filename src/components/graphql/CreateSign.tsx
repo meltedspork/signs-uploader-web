@@ -15,7 +15,7 @@ mutation createSign(
     signInput: $signInput,
   ) {
     uid
-    videoUrl
+    videoUrls
     title
     pronounce
     definition

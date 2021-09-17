@@ -2,6 +2,7 @@ import { createContext } from 'react';
 
 const SIGN_DEFAULT_DATA = {
   videoFile: null,
+  videoUrls: [''],
   title: '',
   pronounce: '',
   definition: '',
@@ -13,6 +14,7 @@ interface ISignDataKeys {
 
 interface ISignDataProps extends ISignDataKeys {
   videoFile: any,
+  videoUrls: string[],
   title: string,
   pronounce: string,
   definition: string,

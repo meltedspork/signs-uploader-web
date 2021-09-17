@@ -7,7 +7,7 @@ const Videofield = ({
   onChange,
 }: any) => {
   console.log('Videofield: value::::', value);
-  const label = /*(value || { name: null }).name ||*/ 'ffff';
+  const label = (value && value.name) || '';
 
   const useInput = {
     label,

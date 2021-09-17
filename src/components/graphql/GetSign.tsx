@@ -14,7 +14,7 @@ const GET_SIGN = gql`
       pronounce
       definition
       state
-      videoUrl
+      videoUrls
     }
   }
 `;
@@ -40,19 +40,19 @@ const GetSign = () => {
     if (data) {
       const {
         viewSign: {
-          videoFile,
+          videoUrls,
           title,
           pronounce,
           definition,
         } 
       } = data;
       const signData: any = {
-        uid,
-        videoFile,
+        videoUrls,
         title,
         pronounce,
         definition,
       }
+      console.log('signData::', signData);
       setSignData(signData);
       setInputSignData(signData);
     }

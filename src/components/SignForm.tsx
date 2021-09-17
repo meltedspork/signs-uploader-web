@@ -3,6 +3,7 @@ import classNames from  'classnames';
 import SignContext from '../contexts/SignContext';
 import Textfield from './inputs/Textfield';
 import Videofield from './inputs/Videofield';
+import Videosfield from './inputs/Videosfield';
 import Form from 'react-bootstrap/Form';
 
 const SignForm = ({ children }: any) => {
@@ -17,6 +18,7 @@ const SignForm = ({ children }: any) => {
   } = useContext(SignContext);
 
   const [inputVideoFile, setInputVideoFile] = useState(null);
+  const [videoUrls, setVideoUrls] = useState([] as any);
   const [inputTitle, setInputTitle] = useState('');
   const [inputPronounce, setInputPronounce] = useState('');
   const [inputDefinition, setInputDefinition] = useState('');
@@ -28,6 +30,7 @@ const SignForm = ({ children }: any) => {
       setInputTitle(signData.title);
       setInputPronounce(signData.pronounce);
       setInputDefinition(signData.definition);
+      setVideoUrls(signData.videoUrls);
     } else if (reset) {
       setInputVideoFile(null);
       setInputTitle('');
@@ -50,6 +53,7 @@ const SignForm = ({ children }: any) => {
     signData,
     setInputSignData,
     setInputVideoFile, inputVideoFile,
+    setVideoUrls,
     setInputTitle, inputTitle,
     setInputPronounce, inputPronounce,
     setInputDefinition, inputDefinition,
@@ -61,6 +65,7 @@ const SignForm = ({ children }: any) => {
       <Textfield label="Pronounce" value={inputPronounce} onChange={setInputPronounce} readOnly={readOnly} />
       <Textfield label="Definition" value={inputDefinition} onChange={setInputDefinition} readOnly={readOnly} />
       <Videofield value={inputVideoFile} onChange={setInputVideoFile} readOnly={readOnly} />
+      <Videosfield title={inputTitle} value={videoUrls} readOnly={readOnly} />
       {children}
     </Form>
   );
