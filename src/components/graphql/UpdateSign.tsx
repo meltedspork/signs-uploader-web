@@ -4,7 +4,7 @@ import { gql, useMutation } from '@apollo/client';
 import Button from 'react-bootstrap/Button';
 
 const UPDATE_SIGN = gql`
-mutation updateSign(
+mutation UpdateSign(
   $uid: UUID!,
   $signInput: SignInput,
 ) {
@@ -57,11 +57,12 @@ const UpdateSign = () => {
     });
     const { updateSign: updatedSign } = data;
     const updatedSignData: any = {
-      videoFile: updatedSign.videoFile,
+      videoUrls: updatedSign.videoUrls,
       title: updatedSign.title,
       pronounce: updatedSign.pronounce,
       definition: updatedSign.definition,
     }
+
     setInputSignData(updatedSignData);
     setSignData(updatedSignData);
     setReadOnly(true);

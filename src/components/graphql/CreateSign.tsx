@@ -8,7 +8,7 @@ declare global {
 }
 
 const CREATE_SIGN = gql`
-mutation createSign(
+mutation CreateSign(
   $signInput: SignInput,
 ) {
   createSign(

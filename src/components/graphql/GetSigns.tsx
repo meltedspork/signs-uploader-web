@@ -3,15 +3,15 @@ import SignsContext from '../../contexts/SignsContext';
 import { gql, useQuery } from '@apollo/client';
 
 const ALL_SIGNS = gql`
-  query AllSigns {
-    allSigns {
+  query signs {
+    signs {
       uid
       title
     }
   }
 `;
 
-const AllSigns = () => {
+const GetSigns = () => {
   const {
     setLoading,
     setError,
@@ -29,12 +29,11 @@ const AllSigns = () => {
     setError(error);
   
     if (data) {
-      const { allSigns } = data;
-      setSigns(allSigns);
+      setSigns(data.signs);
     }
   }, [setLoading, setError, setSigns, loading, error, data]);
 
   return <Fragment />;
 };
 
-export default AllSigns;
+export default GetSigns;

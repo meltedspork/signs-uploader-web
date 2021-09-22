@@ -11,6 +11,7 @@ const Sign = ({ match }: any) => {
     }
   } = match;
 
+  const [loaded, setLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [uid, setUid] = useState(signUid);
@@ -19,6 +20,8 @@ const Sign = ({ match }: any) => {
   const [readOnly, setReadOnly] = useState(true);
 
   const signContextValues = {
+    loaded,
+    setLoaded,
     loading,
     setLoading,
     error,

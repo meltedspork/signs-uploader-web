@@ -29,6 +29,8 @@ interface IContextProps {
   setInputSignData: Function,
   readOnly: boolean,
   setReadOnly: Function,
+  loaded: boolean,
+  setLoaded: Function,
   loading: boolean,
   setLoading: Function,
   error: any,
@@ -38,6 +40,8 @@ interface IContextProps {
 }
 
 const SignContext = createContext({
+  loaded: false,
+  setLoaded: () => {},
   loading: true,
   setLoading: () => {},
   error: null,

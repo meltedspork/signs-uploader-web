@@ -4,8 +4,8 @@ import CreateSign from '../components/graphql/CreateSign';
 import SignForm from '../components/SignForm';
 
 const AddSign = ({ history }: any) => {
-
-  const [loading, setLoading] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [uid, setUid] = useState(null);
   const [signData, setSignData] = useState(null);
@@ -14,6 +14,8 @@ const AddSign = ({ history }: any) => {
   const [reset, setReset] = useState(false);
 
   const signContextValues = {
+    loaded,
+    setLoaded,
     loading,
     setLoading,
     error,

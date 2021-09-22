@@ -12,17 +12,16 @@ const Videosfield = ({
 }: any) => {
   console.log('Videofield: value::::', value);  
 
-  const videoUrls = value.map((src: any, key: number) => {
+  const videoUrls = (value || []).map((src: any, key: number) => {
     const useInput = {
       alt: `${title} Sign #${key}`,
-      key,
       src,
       fluid: true,
       rounded: true,
       thumbnail: true,
     };
     return (
-      <Row>
+      <Row key={key}>
         <Col>
           <Image {...useInput} />
         </Col>

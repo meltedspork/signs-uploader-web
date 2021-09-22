@@ -22,6 +22,8 @@ const GET_SIGN = gql`
 const GetSign = () => {
   const {
     uid,
+    loaded,
+    setLoaded,
     setLoading,
     setError,
     setSignData,
@@ -34,9 +36,11 @@ const GetSign = () => {
   });
 
   useEffect(() => {
-    setLoading(loading);
     setError(error);
+    setLoading(loading);
 
+    if (loaded) return;
+  
     if (data) {
       const {
         viewSign: {
@@ -52,11 +56,11 @@ const GetSign = () => {
         pronounce,
         definition,
       }
-      console.log('signData::', signData);
       setSignData(signData);
       setInputSignData(signData);
+      setLoaded(true);
     }
-  }, [loading, error, uid, setLoading, setError, setSignData, setInputSignData, data]);
+  }, [loaded, setLoaded, loading, error, uid, setLoading, setError, setSignData, setInputSignData, data]);
 
   const onClickEditSign = async (e: any) => {
     e.preventDefault();

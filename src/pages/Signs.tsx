@@ -1,6 +1,6 @@
 import { Fragment, useState } from 'react';
 import SignsContext from '../contexts/SignsContext';
-import AllSigns from '../components/graphql/AllSigns';
+import GetSigns from '../components/graphql/GetSigns';
 import SignsTable from '../components/SignsTable';
 
 const Signs = ({ history }: any) => {
@@ -23,7 +23,7 @@ const Signs = ({ history }: any) => {
         {() => (
           <Fragment>
             <h1>Signs</h1>
-            <AllSigns />
+            <GetSigns />
             <SignsTable history={history} />
           </Fragment>
         )}
