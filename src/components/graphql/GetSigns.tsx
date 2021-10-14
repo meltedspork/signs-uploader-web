@@ -3,10 +3,16 @@ import SignsContext from '../../contexts/SignsContext';
 import { gql, useQuery } from '@apollo/client';
 
 const ALL_SIGNS = gql`
-  query signs {
-    signs {
-      uid
-      title
+  query ViewSigns {
+    viewSigns {
+      paging {
+        current
+        total
+      }
+      signs {
+        uid
+        title
+      }
     }
   }
 `;
@@ -22,14 +28,21 @@ const GetSigns = () => {
     loading,
     error,
     data,
-  } = useQuery(ALL_SIGNS);
+  } = useQuery( ALL_SIGNS, {
+    fetchPolicy: 'no-cache',
+  });
 
   useEffect(() => {
     setLoading(loading);
     setError(error);
-  
+
     if (data) {
-      setSigns(data.signs);
+      const {
+        viewSigns: {
+          signs,
+        }
+      } = data;
+      setSigns(signs);
     }
   }, [setLoading, setError, setSigns, loading, error, data]);
 

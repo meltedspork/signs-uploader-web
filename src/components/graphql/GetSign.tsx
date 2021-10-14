@@ -33,6 +33,7 @@ const GetSign = () => {
 
   const { loading, error, data } = useQuery(GET_SIGN, {
     variables: { uid },
+    fetchPolicy: 'no-cache',
   });
 
   useEffect(() => {
