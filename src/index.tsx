@@ -29,7 +29,7 @@ function renderApp(configJson: {
 
   ReactDOM.render(
     <React.StrictMode>
-      <BrowserRouter>
+      <BrowserRouter forceRefresh={true}>
         <CustomAuth0Provider config={data}>
           <ApiContextProvider config={configJson}>
             <AuthorizedApolloProvider apiBaseUrl={apiBaseUrl}>

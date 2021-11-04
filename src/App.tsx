@@ -30,11 +30,12 @@ function App() {
             <Col>
               <Switch>
                 <Route path="/" exact component={Home} />
+                <Route path="/signs/:page" component={Signs} />
                 <Route path="/signs" component={Signs} />
                 <Route path="/add-sign" component={AddSign} />
                 <Route path="/sign/:uid" component={Sign} />
                 <Route path="/profile" component={Profile} />
-                </Switch>
+              </Switch>
             </Col>
           </Row>
           :

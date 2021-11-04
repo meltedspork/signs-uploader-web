@@ -4,7 +4,7 @@ import { gql, useQuery } from '@apollo/client';
 import Button from 'react-bootstrap/Button';
 
 const GET_SIGN = gql`
-  query ViewSign (
+  query ViewSign(
     $uid: UUID!,
   ) {
     viewSign(
