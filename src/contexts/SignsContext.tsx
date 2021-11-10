@@ -1,13 +1,13 @@
 import { createContext } from 'react';
 
+const EMPTY_FUNCTION = () => {};
 const SIGNS_DEFAULT_DATA = {
   uid: '',
   title: '',
 };
-
 const PAGINATION_DEFAULT_DATA = {
-  currentPage: 1,
-  limit: 0,
+  page: 1,
+  size: 0,
   total: 0,
 };
 
@@ -21,8 +21,8 @@ interface ISignDataProps extends ISignDataKeys {
 };
 
 interface IPaginationDataProps extends ISignDataKeys {
-  currentPage: number,
-  limit: number,
+  page: number,
+  size: number,
   total: number,
 };
 
@@ -37,19 +37,27 @@ interface IContextProps {
   setPagination: Function,
   page: number,
   setPage: Function,
+  size: number,
+  setSize: Function,
+  fetchMore: [Function],
+  setFetchMore: Function,
 }
 
 const SignsContext = createContext({
   loading: true,
-  setLoading: () => {},
+  setLoading: EMPTY_FUNCTION,
   error: null,
-  setError: () => {},
+  setError: EMPTY_FUNCTION,
   signs: [SIGNS_DEFAULT_DATA],
-  setSigns: () => {},
+  setSigns: EMPTY_FUNCTION,
   pagination: PAGINATION_DEFAULT_DATA,
-  setPagination: () => {},
-  page: PAGINATION_DEFAULT_DATA.currentPage,
-  setPage: () => {},
+  setPagination: EMPTY_FUNCTION,
+  page: PAGINATION_DEFAULT_DATA.page,
+  setPage: EMPTY_FUNCTION,
+  size: PAGINATION_DEFAULT_DATA.size,
+  setSize: EMPTY_FUNCTION,
+  fetchMore: [EMPTY_FUNCTION],
+  setFetchMore: EMPTY_FUNCTION,
 } as IContextProps);
 
 export default SignsContext;

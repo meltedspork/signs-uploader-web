@@ -8,6 +8,7 @@ const Signs = ({ history, match }: any) => {
   const {
     params: {
       page: currentPage = 1,
+      size: currentSize = 15,
     }
   } = match;
 
@@ -15,11 +16,13 @@ const Signs = ({ history, match }: any) => {
   const [error, setError] = useState(null);
   const [signs, setSigns] = useState([]);
   const [pagination, setPagination] = useState({
-    currentPage,
-    limit: 0,
+    page: Number(currentPage),
+    size: Number(currentSize),
     total: 0,
   });
-  const [page, setPage] = useState(currentPage);
+  const [page, setPage] = useState(Number(currentPage));
+  const [size, setSize] = useState(Number(currentSize));
+  const [fetchMore, setFetchMore] = useState([]);
 
   const signsContextValues = {
     loading,
@@ -32,6 +35,10 @@ const Signs = ({ history, match }: any) => {
     setPagination,
     page,
     setPage,
+    size,
+    setSize,
+    fetchMore: (fetchMore as any),
+    setFetchMore,
   }
 
   return (

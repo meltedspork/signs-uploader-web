@@ -4,20 +4,15 @@ import { gql, useQuery } from '@apollo/client';
 
 const ALL_SIGNS = gql`
   query ViewSigns(
-    $page: Int!,
+    $page: Int,
+    $size: Int
   ) {
     viewSigns(
       page: $page,
+      size: $size,
     ) {
-      pagination {
-        currentPage
-        limit
-        total
-      }
-      signs {
-        uid
-        title
-      }
+      uid
+      title
     }
   }
 `;
@@ -30,14 +25,18 @@ const GetSigns = () => {
     setPagination,
     page,
     setPage,
+    size,
+    setSize,
+    setFetchMore,
   } = useContext(SignsContext);
 
   const {
     loading,
     error,
     data,
+    fetchMore,
   } = useQuery(ALL_SIGNS, {
-    variables: { page: Number(page) },
+    variables: { page, size },
     fetchPolicy: 'no-cache',
   });
 
@@ -47,19 +46,23 @@ const GetSigns = () => {
 
     if (data) {
       const {
-        viewSigns: {
-          pagination,
-          signs,
-        }
+        pagination,
+        viewSigns,
       } = data;
-      setSigns(signs);
+      setSigns(viewSigns);
       setPagination(pagination);
-      setPage(pagination.currentPage);
+      setPage(pagination.page);
+      setSize(pagination.size);
+      if (fetchMore) {
+        setFetchMore([fetchMore]);
+      }
     }
   }, [
     loading, setLoading,
     error, setError,
-    data, setSigns, setPagination, setPage,
+    data,
+    fetchMore, setFetchMore,
+    setSigns, setPagination, setPage, setSize,
   ]);
 
   return <Fragment />;
