@@ -1,13 +1,16 @@
 import { Fragment, useContext } from 'react';
-import SignsContext from '../contexts/SignsContext';
+import ResourcesContext from '../contexts/ResourcesContext';
 import Table from 'react-bootstrap/Table';
 
-const SignsTable = ({ history }: any) => {
+const ResourcesTable = ({
+  name: resourceName,
+  history,
+}: any) => {
   const {
     loading,
     error,
-    signs,
-  } = useContext(SignsContext);
+    data,
+  } = useContext(ResourcesContext);
 
   if (loading) return <Fragment>loading...</Fragment>;
   if (error) return <Fragment>Error: {JSON.stringify(error)}</Fragment>;
@@ -17,14 +20,14 @@ const SignsTable = ({ history }: any) => {
       <thead>
         <tr>
           <th>ID</th>
-          <th>Title</th>
+          <th>Name</th>
         </tr>
       </thead>
       <tbody>
-        {signs.map((sign: any, index: number) => (
-          <tr key={index} onClick={() => { history.push(`/sign/${sign.uid}`) }}>
-            <td>{sign.uid}</td>
-            <td>{sign.title}</td>
+        {data.map((d: any, index: number) => (
+          <tr key={index} onClick={() => { history.push(`/${resourceName}/${d.uid}`) }}>
+            <td>{d.uid}</td>
+            <td>{d.name}</td>
           </tr>
         ))}
       </tbody>
@@ -32,4 +35,4 @@ const SignsTable = ({ history }: any) => {
   );
 };
 
-export default SignsTable;
+export default ResourcesTable;

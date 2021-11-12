@@ -1,11 +1,7 @@
 import { Fragment, useContext, useEffect } from 'react';
-import SignContext from '../../contexts/SignContext';
+import ResourceContext from '../../contexts/ResourceContext';
 import { gql, useMutation } from '@apollo/client';
 import Button from 'react-bootstrap/Button';
-
-declare global {
-  interface Window { signForm: any; }
-}
 
 const CREATE_SIGN = gql`
 mutation CreateSign(
@@ -16,7 +12,7 @@ mutation CreateSign(
   ) {
     uid
     videoUrls
-    title
+    name
     pronounce
     definition
   }
@@ -28,12 +24,12 @@ const CreateSign = ({ history }: any) => {
     setUid,
     setLoading,
     setError,
-    setSignData,
-    inputSignData,
-    setInputSignData,
+    setData,
+    inputData,
+    setInputData,
     setReadOnly,
     setReset,
-  } = useContext(SignContext);
+  } = useContext(ResourceContext);
 
   const [createNewSign] = useMutation(CREATE_SIGN);
 
@@ -47,15 +43,15 @@ const CreateSign = ({ history }: any) => {
     e.preventDefault();
     const {
       videoFile,
-      title,
+      name,
       pronounce,
       definition,
-    }: any = inputSignData;
+    }: any = inputData;
     const { data } = await createNewSign({
       variables: {
         signInput: {
           videoFile,
-          title,
+          name,
           pronounce,
           definition,
         }
@@ -64,13 +60,13 @@ const CreateSign = ({ history }: any) => {
     const { createSign } = data;
     const { uid } = createSign;
     const createdSign = {
-      title: createSign.title,
+      name: createSign.name,
       pronounce: createSign.pronounce,
       definition: createSign.definition,
     }
     setUid(uid);
-    setSignData(createdSign);
-    setInputSignData(createdSign);
+    setData(createdSign);
+    setInputData(createdSign);
     history.replace({ pathname: `/sign/${uid}` });
   }
 

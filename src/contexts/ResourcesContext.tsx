@@ -1,9 +1,9 @@
 import { createContext } from 'react';
 
 const EMPTY_FUNCTION = () => {};
-const SIGNS_DEFAULT_DATA = {
+const DEFAULT_DATA = {
   uid: '',
-  title: '',
+  name: '',
 };
 const PAGINATION_DEFAULT_DATA = {
   page: 1,
@@ -11,24 +11,24 @@ const PAGINATION_DEFAULT_DATA = {
   total: 0,
 };
 
-interface ISignDataKeys {
+interface IDataKeys {
   [key: string]: string | any;
 }
 
-interface ISignDataProps extends ISignDataKeys {
+interface IDataProps extends IDataKeys {
   uid: string,
-  title: string,
+  name: string,
 };
 
-interface IPaginationDataProps extends ISignDataKeys {
+interface IPaginationDataProps extends IDataKeys {
   page: number,
   size: number,
   total: number,
 };
 
 interface IContextProps {
-  signs: [ISignDataProps],
-  setSigns: Function,
+  data: [IDataProps],
+  setData: Function,
   loading: boolean,
   setLoading: Function,
   error: any,
@@ -43,13 +43,13 @@ interface IContextProps {
   setFetchMore: Function,
 }
 
-const SignsContext = createContext({
+const ResourcesContext = createContext({
   loading: true,
   setLoading: EMPTY_FUNCTION,
   error: null,
   setError: EMPTY_FUNCTION,
-  signs: [SIGNS_DEFAULT_DATA],
-  setSigns: EMPTY_FUNCTION,
+  data: [DEFAULT_DATA],
+  setData: EMPTY_FUNCTION,
   pagination: PAGINATION_DEFAULT_DATA,
   setPagination: EMPTY_FUNCTION,
   page: PAGINATION_DEFAULT_DATA.page,
@@ -60,4 +60,4 @@ const SignsContext = createContext({
   setFetchMore: EMPTY_FUNCTION,
 } as IContextProps);
 
-export default SignsContext;
+export default ResourcesContext;

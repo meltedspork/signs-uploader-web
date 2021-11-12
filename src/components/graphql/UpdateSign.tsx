@@ -1,5 +1,5 @@
 import { Fragment, useContext } from 'react';
-import SignContext from '../../contexts/SignContext';
+import ResourceContext from '../../contexts/ResourceContext';
 import { gql, useMutation } from '@apollo/client';
 import Button from 'react-bootstrap/Button';
 
@@ -13,7 +13,7 @@ mutation UpdateSign(
     signInput: $signInput,
   ) {
     videoUrls
-    title
+    name
     pronounce
     definition
   }
@@ -23,33 +23,33 @@ mutation UpdateSign(
 const UpdateSign = () => {
   const {
     uid,
-    signData,
-    setSignData,
-    inputSignData,
-    setInputSignData,
+    data,
+    setData,
+    inputData,
+    setInputData,
     setReadOnly,
-  } = useContext(SignContext);
+  } = useContext(ResourceContext);
 
   const [updateSign] = useMutation(UPDATE_SIGN);
 
   const onClickCancelSign = async (e: any) => {
     e.preventDefault();
-    setSignData(signData);
+    setData(data);
     setReadOnly(true);
   }
 
   const onClickUpdateSign = async (e: any) => {
     e.preventDefault();
     const {
-      title,
+      name,
       pronounce,
       definition,
-    }: any = inputSignData;
+    }: any = inputData;
     const { data } = await updateSign({
       variables: {
         uid,
         signInput: {
-          title,
+          name,
           pronounce,
           definition,
         }
@@ -58,13 +58,13 @@ const UpdateSign = () => {
     const { updateSign: updatedSign } = data;
     const updatedSignData: any = {
       videoUrls: updatedSign.videoUrls,
-      title: updatedSign.title,
+      name: updatedSign.name,
       pronounce: updatedSign.pronounce,
       definition: updatedSign.definition,
     }
 
-    setInputSignData(updatedSignData);
-    setSignData(updatedSignData);
+    setInputData(updatedSignData);
+    setData(updatedSignData);
     setReadOnly(true);
   }
 

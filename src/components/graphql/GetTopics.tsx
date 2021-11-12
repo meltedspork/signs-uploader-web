@@ -2,12 +2,12 @@ import { Fragment, useEffect, useContext } from 'react';
 import ResourcesContext from '../../contexts/ResourcesContext';
 import { gql, useQuery } from '@apollo/client';
 
-const ALL_SIGNS = gql`
-  query ViewSigns(
+const ALL_TOPICS = gql`
+  query ViewTopics(
     $page: Int,
     $size: Int
   ) {
-    viewSigns(
+    viewTopics(
       page: $page,
       size: $size,
     ) {
@@ -17,7 +17,7 @@ const ALL_SIGNS = gql`
   }
 `;
 
-const GetSigns = () => {
+const GetTopics = () => {
   const {
     setLoading,
     setError,
@@ -35,7 +35,7 @@ const GetSigns = () => {
     error,
     data,
     fetchMore,
-  } = useQuery(ALL_SIGNS, {
+  } = useQuery(ALL_TOPICS, {
     variables: { page, size },
     fetchPolicy: 'no-cache',
   });
@@ -47,9 +47,9 @@ const GetSigns = () => {
     if (data) {
       const {
         pagination,
-        viewSigns,
+        viewTopics,
       } = data;
-      setData(viewSigns);
+      setData(viewTopics);
       setPagination(pagination);
       setPage(pagination.page);
       setSize(pagination.size);
@@ -68,4 +68,4 @@ const GetSigns = () => {
   return <Fragment />;
 };
 
-export default GetSigns;
+export default GetTopics;

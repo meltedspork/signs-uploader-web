@@ -1,25 +1,25 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import ResourceContext from '../contexts/ResourceContext';
-import GetSign from '../components/graphql/GetSign';
-import UpdateSign from '../components/graphql/UpdateSign';
-import SignForm from '../components/SignForm';
+import GetTopic from '../components/graphql/GetTopic';
+import UpdateTopic from '../components/graphql/UpdateTopic';
+import TopicForm from '../components/TopicForm';
 
 const Sign = ({ match }: any) => {
   const {
     params: {
-      uid: signUid,
+      uid: topicUid,
     }
   } = match;
 
   const [loaded, setLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [uid, setUid] = useState(signUid);
+  const [uid, setUid] = useState(topicUid);
   const [data, setData] = useState(null);
   const [inputData, setInputData] = useState(null);
   const [readOnly, setReadOnly] = useState(true);
 
-  const signContextValues = {
+  const topicContextValues = {
     loaded,
     setLoaded,
     loading,
@@ -39,12 +39,14 @@ const Sign = ({ match }: any) => {
   };
 
   return (
-    <ResourceContext.Provider value={signContextValues}>
+    <ResourceContext.Provider value={topicContextValues}>
       <ResourceContext.Consumer>
         {(context) => (
-          <SignForm>
-            {context.readOnly ? <GetSign /> : <UpdateSign />}
-          </SignForm>
+          <Fragment>
+            <TopicForm>
+              {context.readOnly ? <GetTopic /> : <UpdateTopic />}
+            </TopicForm>
+          </Fragment>
         )}
       </ResourceContext.Consumer>
     </ResourceContext.Provider>

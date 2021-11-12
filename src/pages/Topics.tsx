@@ -1,10 +1,10 @@
 import { Fragment, useState } from 'react';
-import ResourcesContext from '../contexts/ResourcesContext';
-import GetSigns from '../components/graphql/GetSigns';
+import SignsContext from '../contexts/ResourcesContext';
+import GetTopics from '../components/graphql/GetTopics';
 import ResourcesTable from '../components/ResourcesTable';
 import PaginationUI from '../components/PaginationUI';
 
-const SIGN_RESOURCE_NAME = 'sign';
+const TOPIC_RESOURCE_NAME = 'topic';
 
 const Signs = ({ history, match }: any) => {
   const {
@@ -26,7 +26,7 @@ const Signs = ({ history, match }: any) => {
   const [size, setSize] = useState(Number(currentSize));
   const [fetchMore, setFetchMore] = useState([]);
 
-  const signsContextValues = {
+  const topicContextValues = {
     loading,
     setLoading,
     error,
@@ -44,18 +44,18 @@ const Signs = ({ history, match }: any) => {
   }
 
   return (
-    <ResourcesContext.Provider value={signsContextValues}>
-      <ResourcesContext.Consumer>
+    <SignsContext.Provider value={topicContextValues}>
+      <SignsContext.Consumer>
         {() => (
           <Fragment>
-            <h1>Signs</h1>
-            <PaginationUI history={history} name={SIGN_RESOURCE_NAME} />
-            <GetSigns />
-            <ResourcesTable history={history} name={SIGN_RESOURCE_NAME} />
+            <h1>Topics</h1>
+            <PaginationUI history={history} name={TOPIC_RESOURCE_NAME} />
+            <GetTopics />
+            <ResourcesTable history={history} name={TOPIC_RESOURCE_NAME} />
           </Fragment>
         )}
-      </ResourcesContext.Consumer>
-    </ResourcesContext.Provider>
+      </SignsContext.Consumer>
+    </SignsContext.Provider>
   )
 }
 

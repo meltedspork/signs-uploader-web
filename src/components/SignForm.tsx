@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import classNames from  'classnames';
-import SignContext from '../contexts/SignContext';
+import ResourceContext from '../contexts/ResourceContext';
 import Textfield from './inputs/Textfield';
 import Videofield from './inputs/Videofield';
 import Videosfield from './inputs/Videosfield';
@@ -10,16 +10,16 @@ const SignForm = ({ children }: any) => {
   const {
     loading,
     error,
-    signData,
-    setInputSignData,
+    data,
+    setInputData,
     readOnly,
     reset,
     setReset,
-  } = useContext(SignContext);
+  } = useContext(ResourceContext);
 
   const [inputVideoFile, setInputVideoFile] = useState(null);
   const [videoUrls, setVideoUrls] = useState([] as any);
-  const [inputTitle, setInputTitle] = useState('');
+  const [inputName, setInputName] = useState('');
   const [inputPronounce, setInputPronounce] = useState('');
   const [inputDefinition, setInputDefinition] = useState('');
 
@@ -27,45 +27,45 @@ const SignForm = ({ children }: any) => {
     if (loading || error) return;
 
     if (readOnly) {
-      setInputTitle(signData.title);
-      setInputPronounce(signData.pronounce);
-      setInputDefinition(signData.definition);
-      setVideoUrls(signData.videoUrls);
+      setInputName(data.name);
+      setInputPronounce(data.pronounce);
+      setInputDefinition(data.definition);
+      setVideoUrls(data.videoUrls);
     } else if (reset) {
       setInputVideoFile(null);
-      setInputTitle('');
+      setInputName('');
       setInputPronounce('');
       setInputDefinition('');
       setReset(false);
     }
     const updatedSignData = {
       videoFile: inputVideoFile,
-      title: inputTitle,
+      name: inputName,
       pronounce: inputPronounce,
       definition: inputDefinition,
     };
-    setInputSignData(updatedSignData);
+    setInputData(updatedSignData);
   }, [
     setReset, reset,
     loading,
     error,
     readOnly,
-    signData,
-    setInputSignData,
+    data,
+    setInputData,
     setInputVideoFile, inputVideoFile,
     setVideoUrls,
-    setInputTitle, inputTitle,
+    setInputName, inputName,
     setInputPronounce, inputPronounce,
     setInputDefinition, inputDefinition,
   ]);
 
   return (
     <Form className={classNames({ loading: loading })}>
-      <Textfield label="Title" value={inputTitle} onChange={setInputTitle} readOnly={readOnly} />
+      <Textfield label="Name" value={inputName} onChange={setInputName} readOnly={readOnly} />
       <Textfield label="Pronounce" value={inputPronounce} onChange={setInputPronounce} readOnly={readOnly} />
       <Textfield label="Definition" value={inputDefinition} onChange={setInputDefinition} readOnly={readOnly} />
       <Videofield value={inputVideoFile} onChange={setInputVideoFile} readOnly={readOnly} />
-      <Videosfield title={inputTitle} value={videoUrls} readOnly={readOnly} />
+      <Videosfield title={inputName} value={videoUrls} readOnly={readOnly} />
       {children}
     </Form>
   );

@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useContext, useState } from 'react';
-import SignsContext from '../contexts/SignsContext';
+import ResourcesContext from '../contexts/ResourcesContext';
 import Pagination from 'react-bootstrap/Pagination';
 
 const _generatePageObject = (currentPage: number, override: any = {}) => {
@@ -75,8 +75,8 @@ const PaginationUI = ({ history }: any) => {
     setPage,
     size,
     setSize,
-    setSigns,
-  } = useContext(SignsContext);
+    setData,
+  } = useContext(ResourcesContext);
   const fetchMore = fetchMoreArr[0];
   const [items, setItems] = useState([]);
 
@@ -93,7 +93,7 @@ const PaginationUI = ({ history }: any) => {
     setItems,
   ]);
 
-  if (pagination.total <= 0) return <Fragment />;
+  if (pagination.total <= 1) return <Fragment />;
 
   return (
     <Pagination>
@@ -113,7 +113,7 @@ const PaginationUI = ({ history }: any) => {
                       pagination,
                     } = fetchMoreResult;
 
-                    setSigns(viewSigns);
+                    setData(viewSigns);
                     setPagination(pagination);
                     setPage(pagination.page);
                     setSize(pagination.size);

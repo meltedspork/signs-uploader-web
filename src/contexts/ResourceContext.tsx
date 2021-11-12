@@ -8,25 +8,29 @@ const SIGN_DEFAULT_DATA = {
   definition: '',
 };
 
-interface ISignDataKeys {
+interface IDataKeys {
   [key: string]: string | any;
 }
 
-interface ISignDataProps extends ISignDataKeys {
-  videoFile: any,
+interface ISignDataProps extends IDataKeys {
+  videoFile: string | null,
   videoUrls: string[],
   title: string,
   pronounce: string,
   definition: string,
 };
 
+interface ITopicProps extends IDataKeys {
+  topic: string,
+};
+
 interface IContextProps {
-  uid: string,
+  uid: string | null,
   setUid: Function,
-  signData: ISignDataProps,
-  setSignData: Function,
-  inputSignData: ISignDataProps,
-  setInputSignData: Function,
+  data: ISignDataProps | ITopicProps,
+  setData: Function,
+  inputData: ISignDataProps | ITopicProps,
+  setInputData: Function,
   readOnly: boolean,
   setReadOnly: Function,
   loaded: boolean,
@@ -39,7 +43,7 @@ interface IContextProps {
   setReset: Function,
 }
 
-const SignContext = createContext({
+const ResourceContext = createContext({
   loaded: false,
   setLoaded: () => {},
   loading: true,
@@ -48,14 +52,14 @@ const SignContext = createContext({
   setError: () => {},
   readOnly: false,
   setReadOnly: () => {},
-  uid: '',
+  uid: null,
   setUid: () => {},
-  signData: SIGN_DEFAULT_DATA,
-  setSignData: () => {},
-  inputSignData: SIGN_DEFAULT_DATA,
-  setInputSignData: () => {},
+  data: SIGN_DEFAULT_DATA,
+  setData: () => {},
+  inputData: SIGN_DEFAULT_DATA,
+  setInputData: () => {},
   reset: false,
   setReset: () => {},
 } as IContextProps);
 
-export default SignContext;
+export default ResourceContext;

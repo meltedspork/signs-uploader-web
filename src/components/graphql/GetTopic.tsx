@@ -3,23 +3,19 @@ import ResourceContext from '../../contexts/ResourceContext';
 import { gql, useQuery } from '@apollo/client';
 import Button from 'react-bootstrap/Button';
 
-const GET_SIGN = gql`
-  query ViewSign(
+const GET_TOPIC = gql`
+  query ViewTopic(
     $uid: UUID!,
   ) {
-    viewSign(
+    viewTopic(
       uid: $uid,
     ) {
       name
-      pronounce
-      definition
-      state
-      videoUrls
     }
   }
 `;
 
-const GetSign = () => {
+const GetTopic = () => {
   const {
     uid,
     loaded,
@@ -31,7 +27,7 @@ const GetSign = () => {
     setReadOnly,
   } = useContext(ResourceContext);
 
-  const { loading, error, data } = useQuery(GET_SIGN, {
+  const { loading, error, data } = useQuery(GET_TOPIC, {
     variables: { uid },
     fetchPolicy: 'no-cache',
   });
@@ -44,37 +40,31 @@ const GetSign = () => {
   
     if (data) {
       const {
-        viewSign: {
-          videoUrls,
+        viewTopic: {
           name,
-          pronounce,
-          definition,
         } 
       } = data;
-      const signData: any = {
-        videoUrls,
+      const topicData: any = {
         name,
-        pronounce,
-        definition,
       }
-      setData(signData);
-      setInputData(signData);
+      setData(topicData);
+      setInputData(topicData);
       setLoaded(true);
     }
   }, [
     loaded, setLoaded,
     loading, error, uid, setLoading, setError, setData, setInputData, data]);
 
-  const onClickEditSign = async (e: any) => {
+  const onClickEditTopic = async (e: any) => {
     e.preventDefault();
     setReadOnly(false);
   }
 
   return (
-    <Button variant="primary" type="button" onClick={onClickEditSign}>
+    <Button variant="primary" type="button" onClick={onClickEditTopic}>
       Edit
     </Button>
   );
 }
 
-export default GetSign;
+export default GetTopic;

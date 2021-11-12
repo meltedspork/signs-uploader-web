@@ -29,6 +29,12 @@ const NavigationBar = () => {
               <NavLink to="/add-sign" className="nav-link">
                 Add Sign
               </NavLink>
+              <NavLink to="/topics" className="nav-link">
+                Topics
+              </NavLink>
+              <NavLink to="/add-topic" className="nav-link">
+                Add Topic
+              </NavLink>
             </Nav>
             <DropdownButton title={nickName} menuAlign="right" id="basic-nav-dropdown">
               <NavLink to="/profile" className="dropdown-item">

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import SignContext from '../contexts/SignContext';
+import ResourceContext from '../contexts/ResourceContext';
 import CreateSign from '../components/graphql/CreateSign';
 import SignForm from '../components/SignForm';
 
@@ -8,8 +8,8 @@ const AddSign = ({ history }: any) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [uid, setUid] = useState(null);
-  const [signData, setSignData] = useState(null);
-  const [inputSignData, setInputSignData] = useState(null);
+  const [data, setData] = useState(null);
+  const [inputData, setInputData] = useState(null);
   const [readOnly, setReadOnly] = useState(false);
   const [reset, setReset] = useState(false);
 
@@ -24,24 +24,24 @@ const AddSign = ({ history }: any) => {
     setReadOnly,
     uid: (uid as any),
     setUid,
-    signData: (signData as any),
-    setSignData,
-    inputSignData: (inputSignData as any),
-    setInputSignData,
+    data: (data as any),
+    setData,
+    inputData: (inputData as any),
+    setInputData,
     reset,
     setReset,
   };
 
   return (
-    <SignContext.Provider value={signContextValues}>
-      <SignContext.Consumer>
+    <ResourceContext.Provider value={signContextValues}>
+      <ResourceContext.Consumer>
         {() => (
           <SignForm>
             <CreateSign history={history} />
           </SignForm>
         )}
-      </SignContext.Consumer>
-    </SignContext.Provider>
+      </ResourceContext.Consumer>
+    </ResourceContext.Provider>
   )
 }
 
