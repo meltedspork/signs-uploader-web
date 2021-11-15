@@ -3,7 +3,7 @@ import ResourcesContext from '../contexts/ResourcesContext';
 import Table from 'react-bootstrap/Table';
 
 const ResourcesTable = ({
-  name: resourceName,
+  resourcePath,
   history,
 }: any) => {
   const {
@@ -25,7 +25,7 @@ const ResourcesTable = ({
       </thead>
       <tbody>
         {data.map((d: any, index: number) => (
-          <tr key={index} onClick={() => { history.push(`/${resourceName}/${d.uid}`) }}>
+          <tr key={index} onClick={() => { history.push(`/${resourcePath}/${d.uid}`) }}>
             <td>{d.uid}</td>
             <td>{d.name}</td>
           </tr>

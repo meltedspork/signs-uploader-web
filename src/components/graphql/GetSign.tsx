@@ -1,9 +1,8 @@
-import { useEffect, useContext } from 'react';
-import ResourceContext from '../../contexts/ResourceContext';
-import { gql, useQuery } from '@apollo/client';
-import Button from 'react-bootstrap/Button';
+import GetResource from './GetResource';
+import resourceConstant from '../../constants/resourceConstant';
 
-const GET_SIGN = gql`
+const SIGN = resourceConstant.SIGN;
+const SIGN_QUERY = `
   query ViewSign(
     $uid: UUID!,
   ) {
@@ -20,60 +19,12 @@ const GET_SIGN = gql`
 `;
 
 const GetSign = () => {
-  const {
-    uid,
-    loaded,
-    setLoaded,
-    setLoading,
-    setError,
-    setData,
-    setInputData,
-    setReadOnly,
-  } = useContext(ResourceContext);
-
-  const { loading, error, data } = useQuery(GET_SIGN, {
-    variables: { uid },
-    fetchPolicy: 'no-cache',
-  });
-
-  useEffect(() => {
-    setError(error);
-    setLoading(loading);
-
-    if (loaded) return;
-  
-    if (data) {
-      const {
-        viewSign: {
-          videoUrls,
-          name,
-          pronounce,
-          definition,
-        } 
-      } = data;
-      const signData: any = {
-        videoUrls,
-        name,
-        pronounce,
-        definition,
-      }
-      setData(signData);
-      setInputData(signData);
-      setLoaded(true);
-    }
-  }, [
-    loaded, setLoaded,
-    loading, error, uid, setLoading, setError, setData, setInputData, data]);
-
-  const onClickEditSign = async (e: any) => {
-    e.preventDefault();
-    setReadOnly(false);
-  }
-
   return (
-    <Button variant="primary" type="button" onClick={onClickEditSign}>
-      Edit
-    </Button>
+    <GetResource
+      query={SIGN_QUERY}
+      resourceName={SIGN.name}
+      resourceFields={SIGN.fields}
+    />
   );
 }
 

@@ -1,9 +1,8 @@
-import { Fragment, useContext, useEffect } from 'react';
-import ResourceContext from '../../contexts/ResourceContext';
-import { gql, useMutation } from '@apollo/client';
-import Button from 'react-bootstrap/Button';
+import CreateResource from './CreateResource';
+import resourceConstant from '../../constants/resourceConstant';
 
-const CREATE_SIGN = gql`
+const SIGN = resourceConstant.SIGN;
+const SIGN_CREATE_QUERY: string = `
 mutation CreateSign(
   $signInput: SignInput,
 ) {
@@ -20,70 +19,13 @@ mutation CreateSign(
 `;
 
 const CreateSign = ({ history }: any) => {
-  const {
-    setUid,
-    setLoading,
-    setError,
-    setData,
-    inputData,
-    setInputData,
-    setReadOnly,
-    setReset,
-  } = useContext(ResourceContext);
-
-  const [createNewSign] = useMutation(CREATE_SIGN);
-
-  useEffect(() => {
-    setLoading(false);
-    setError(false);
-    setReadOnly(false);
-  });
-
-  const onClickCreateSign = async (e: any) => {
-    e.preventDefault();
-    const {
-      videoFile,
-      name,
-      pronounce,
-      definition,
-    }: any = inputData;
-    const { data } = await createNewSign({
-      variables: {
-        signInput: {
-          videoFile,
-          name,
-          pronounce,
-          definition,
-        }
-      },
-    });
-    const { createSign } = data;
-    const { uid } = createSign;
-    const createdSign = {
-      name: createSign.name,
-      pronounce: createSign.pronounce,
-      definition: createSign.definition,
-    }
-    setUid(uid);
-    setData(createdSign);
-    setInputData(createdSign);
-    history.replace({ pathname: `/sign/${uid}` });
-  }
-
-  const onClickClearSign = async (e: any) => {
-    e.preventDefault();
-    if (setReset) setReset(true);
-  }
-
   return (
-    <Fragment>
-      <Button variant="primary" type="button" onClick={onClickCreateSign}>
-        Submit
-      </Button>{' '}
-      <Button variant="danger" type="button" onClick={onClickClearSign}>
-        Clear
-      </Button>
-    </Fragment>
+    <CreateResource
+      history={history}
+      resourceFields={SIGN.fields}
+      resourceName={SIGN.name}
+      query={SIGN_CREATE_QUERY}
+    />
   )
 }
 

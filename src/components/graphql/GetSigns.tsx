@@ -1,8 +1,8 @@
-import { Fragment, useEffect, useContext } from 'react';
-import ResourcesContext from '../../contexts/ResourcesContext';
-import { gql, useQuery } from '@apollo/client';
+import GetResources from './GetResources';
+import resourceConstant from '../../constants/resourceConstant';
 
-const ALL_SIGNS = gql`
+const SIGN = resourceConstant.SIGN;
+const SIGNS_QUERY = `
   query ViewSigns(
     $page: Int,
     $size: Int
@@ -18,54 +18,12 @@ const ALL_SIGNS = gql`
 `;
 
 const GetSigns = () => {
-  const {
-    setLoading,
-    setError,
-    setData,
-    setPagination,
-    page,
-    setPage,
-    size,
-    setSize,
-    setFetchMore,
-  } = useContext(ResourcesContext);
-
-  const {
-    loading,
-    error,
-    data,
-    fetchMore,
-  } = useQuery(ALL_SIGNS, {
-    variables: { page, size },
-    fetchPolicy: 'no-cache',
-  });
-
-  useEffect(() => {
-    setLoading(loading);
-    setError(error);
-
-    if (data) {
-      const {
-        pagination,
-        viewSigns,
-      } = data;
-      setData(viewSigns);
-      setPagination(pagination);
-      setPage(pagination.page);
-      setSize(pagination.size);
-      if (fetchMore) {
-        setFetchMore([fetchMore]);
-      }
-    }
-  }, [
-    loading, setLoading,
-    error, setError,
-    data,
-    fetchMore, setFetchMore,
-    setData, setPagination, setPage, setSize,
-  ]);
-
-  return <Fragment />;
+  return (
+    <GetResources
+      query={SIGNS_QUERY}
+      resourceNames={SIGN.resource}
+    />
+  );
 };
 
 export default GetSigns;

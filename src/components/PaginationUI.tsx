@@ -64,7 +64,7 @@ const _buildPagination = ({ page: currentPage, size: limit, total }: any) => {
   return items;
 }
 
-const PaginationUI = ({ history }: any) => {
+const PaginationUI = ({ resourcePath, history }: any) => {
   const {
     loading,
     setLoading,
@@ -80,11 +80,9 @@ const PaginationUI = ({ history }: any) => {
   const fetchMore = fetchMoreArr[0];
   const [items, setItems] = useState([]);
 
-
   useEffect(() => {
     if (loading || error) return;
     const builtItems: any = _buildPagination(pagination);
-    console.log('builtItems', builtItems);
     setItems(builtItems);
   }, [
     loading,
@@ -93,7 +91,7 @@ const PaginationUI = ({ history }: any) => {
     setItems,
   ]);
 
-  if (pagination.total <= 1) return <Fragment />;
+  if (items.length <= 1) return <Fragment />;
 
   return (
     <Pagination>
@@ -118,7 +116,7 @@ const PaginationUI = ({ history }: any) => {
                     setPage(pagination.page);
                     setSize(pagination.size);
 
-                    history.push(`/signs/${pagination.page}`);
+                    history.push(`/${resourcePath}/${pagination.page}`);
                     return fetchMoreResult || previous;
                   },
                 });
