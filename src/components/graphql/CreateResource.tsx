@@ -33,21 +33,12 @@ const CreateResource = ({
 
   const onClickCreateResource = async (e: any) => {
     e.preventDefault();
-    let variables: any = {
-      [qraphqlQueryInput]: {},
+    const variables: any = {
+      [qraphqlQueryInput]: inputData,
     };
-    // resourceFields.forEach((field: string) => {
-    //   variables[qraphqlQueryInput][field] = inputData[field];
-    // });
-    variables[qraphqlQueryInput] = inputData;
     const { data } = await createNewResource({ variables });
-    const createData = data[qraphqlQueryResp];
-    const { uid } = createData;
-    let createdData: any = {};
-    // resourceFields.forEach((field: string) => {
-    //   createdData[field] = createData[field];
-    // });
-    createdData = createData;
+    const createdData = data[qraphqlQueryResp];
+    const { uid } = createdData;
     setUid(uid);
     setData(createdData);
     setInputData(createdData);

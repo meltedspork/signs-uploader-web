@@ -8,13 +8,13 @@ const Selectfield = ({
   readOnly,
   onChange,
 }: any) => {
-  const labelMap = (v: any) => v.map(({ name, uid }: any) => ({ label: name, value: uid }));
-  const nameMap = (v: any) => v.map(({ label, value }: any) => ({ name: label, uid: value }));
+  const transformLabelMap = (v: any) => v.map(({ name, uid }: any) => ({ label: name, value: uid }));
+  const transformNameMap = (v: any) => v.map(({ label, value }: any) => ({ name: label, uid: value }));
   const useSelect = {
     isMulti: true,
-    value: labelMap(value),
-    options: labelMap(options),
-    onChange: (value: any) => onChange(nameMap(value)),
+    value: transformLabelMap(value),
+    options: transformLabelMap(options),
+    onChange: (value: any) => onChange(transformNameMap(value)),
     isDisabled: readOnly,
   };
 

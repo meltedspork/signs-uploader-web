@@ -30,18 +30,12 @@ const UpdateResource = ({
 
   const onClickUpdateResource = async (e: any) => {
     e.preventDefault();
-    let variables: any = {
+    const variables: any = {
       uid,
-      [qraphqlQueryInput]: {},
+      [qraphqlQueryInput]: inputData,
     };
-    variables[qraphqlQueryInput] = inputData;
     const { data } = await updateResource({ variables });
-    const updateData = data[qraphqlQueryResp];
-    let updatedData: any = {};
-    // resourceFields.forEach((field: string) => {
-    //   updatedData[field] = updateData[field];
-    // });
-    updatedData = updateData;
+    const updatedData = data[qraphqlQueryResp];
     setInputData(updatedData);
     setData(updatedData);
     setReadOnly(true);

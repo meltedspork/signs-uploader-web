@@ -65,7 +65,7 @@ const SignForm = ({ children }: any) => {
       name: inputName,
       pronounce: inputPronounce,
       definition: inputDefinition,
-      topics: inputTopics,
+      topics: inputTopics.map(({ uid }: any) => uid),
     };
     setInputData(updatedSignData);
   }, [

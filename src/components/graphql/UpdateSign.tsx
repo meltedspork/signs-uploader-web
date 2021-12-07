@@ -16,7 +16,6 @@ mutation UpdateSign(
     pronounce
     topics {
       uid
-      name
     }
     videoUrls
   }
