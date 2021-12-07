@@ -5,7 +5,6 @@ import Button from 'react-bootstrap/Button';
 import { capitalize } from '../../services/textService';
 
 const UpdateResource = ({
-  resourceFields,
   resourceName,
   query,
 }: any) => {
@@ -35,15 +34,14 @@ const UpdateResource = ({
       uid,
       [qraphqlQueryInput]: {},
     };
-    resourceFields.forEach((field: string) => {
-      variables[qraphqlQueryInput][field] = inputData[field];
-    });
+    variables[qraphqlQueryInput] = inputData;
     const { data } = await updateResource({ variables });
     const updateData = data[qraphqlQueryResp];
     let updatedData: any = {};
-    resourceFields.forEach((field: string) => {
-      updatedData[field] = updateData[field];
-    });
+    // resourceFields.forEach((field: string) => {
+    //   updatedData[field] = updateData[field];
+    // });
+    updatedData = updateData;
     setInputData(updatedData);
     setData(updatedData);
     setReadOnly(true);

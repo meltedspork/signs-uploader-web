@@ -1,7 +1,7 @@
 import GetResources from './GetResources';
 import resourceConstant from '../../constants/resourceConstant';
 
-const TOPIC = resourceConstant.TOPIC;
+const TOPIC_RESOURCES = resourceConstant.TOPIC.resources;
 const TOPICS_QUERY = `
   query ViewTopics(
     $page: Int,
@@ -21,7 +21,7 @@ const GetTopics = () => {
   return (
     <GetResources
       query={TOPICS_QUERY}
-      resourceNames={TOPIC.resource}
+      resourcesName={TOPIC_RESOURCES}
     />
   );
 };

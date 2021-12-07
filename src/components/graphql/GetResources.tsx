@@ -3,8 +3,7 @@ import ResourcesContext from '../../contexts/ResourcesContext';
 import { gql, useQuery } from '@apollo/client';
 import { capitalize } from '../../services/textService';
 
-const GetResources = ({ resourceNames, query }: any) => {
-  const viewResp = `view${capitalize(resourceNames)}`;
+const GetResources = ({ resourcesName, query }: any) => {
   const graphqlQuery = gql(query);
   const {
     setLoading,
@@ -33,6 +32,7 @@ const GetResources = ({ resourceNames, query }: any) => {
     setError(error);
 
     if (data) {
+      const viewResp = `view${capitalize(resourcesName)}`;
       const { pagination } = data;
       const viewData = data[viewResp];
       setData(viewData);
@@ -44,6 +44,7 @@ const GetResources = ({ resourceNames, query }: any) => {
       }
     }
   }, [
+    resourcesName,
     loading, setLoading,
     error, setError,
     data,

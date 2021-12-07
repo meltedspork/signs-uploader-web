@@ -12,8 +12,8 @@ const Resources = ({
   match
 }: any) => {
   const resource: any = (resourceConstant as any)[resourceKey];
-  const resourceName = resource.name;
-  const resourcesName = resource.resource;
+  const resourceName = resource.resource;
+  const resourcesName = resource.resources;
   const {
     params: {
       page: currentPage = 1,

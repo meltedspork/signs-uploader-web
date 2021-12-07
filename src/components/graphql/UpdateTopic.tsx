@@ -1,7 +1,7 @@
 import UpdateResource from './UpdateResource';
 import resourceConstant from '../../constants/resourceConstant';
 
-const TOPIC = resourceConstant.TOPIC;
+const TOPIC_RESOURCE = resourceConstant.TOPIC.resource;
 const TOPIC_UPDATE_QUERY: string = `
 mutation UpdateTopic(
   $uid: UUID!,
@@ -19,8 +19,7 @@ mutation UpdateTopic(
 const UpdateTopic = () => {
   return (
     <UpdateResource
-      resourceName={TOPIC.name}
-      resourceFields={TOPIC.fields}
+      resourceName={TOPIC_RESOURCE}
       query={TOPIC_UPDATE_QUERY}
     />
   )

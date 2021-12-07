@@ -1,7 +1,7 @@
 import GetResources from './GetResources';
 import resourceConstant from '../../constants/resourceConstant';
 
-const SIGN = resourceConstant.SIGN;
+const SIGN_RESOURCES = resourceConstant.SIGN.resources;
 const SIGNS_QUERY = `
   query ViewSigns(
     $page: Int,
@@ -21,7 +21,7 @@ const GetSigns = () => {
   return (
     <GetResources
       query={SIGNS_QUERY}
-      resourceNames={SIGN.resource}
+      resourcesName={SIGN_RESOURCES}
     />
   );
 };

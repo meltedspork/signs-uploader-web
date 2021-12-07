@@ -6,7 +6,6 @@ import { capitalize } from '../../services/textService';
 
 const CreateResource = ({
   history,
-  resourceFields,
   resourceName,
   query,
 }: any) => {
@@ -37,16 +36,18 @@ const CreateResource = ({
     let variables: any = {
       [qraphqlQueryInput]: {},
     };
-    resourceFields.forEach((field: string) => {
-      variables[qraphqlQueryInput][field] = inputData[field];
-    });
+    // resourceFields.forEach((field: string) => {
+    //   variables[qraphqlQueryInput][field] = inputData[field];
+    // });
+    variables[qraphqlQueryInput] = inputData;
     const { data } = await createNewResource({ variables });
     const createData = data[qraphqlQueryResp];
     const { uid } = createData;
     let createdData: any = {};
-    resourceFields.forEach((field: string) => {
-      createdData[field] = createData[field];
-    });
+    // resourceFields.forEach((field: string) => {
+    //   createdData[field] = createData[field];
+    // });
+    createdData = createData;
     setUid(uid);
     setData(createdData);
     setInputData(createdData);

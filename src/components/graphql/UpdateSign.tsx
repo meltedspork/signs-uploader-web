@@ -1,7 +1,7 @@
 import UpdateResource from './UpdateResource';
 import resourceConstant from '../../constants/resourceConstant';
 
-const SIGN = resourceConstant.SIGN;
+const SIGN_RESOURCE = resourceConstant.SIGN.resource;
 const SIGN_UPDATE_QUERY: string = `
 mutation UpdateSign(
   $uid: UUID!,
@@ -11,10 +11,14 @@ mutation UpdateSign(
     uid: $uid,
     signInput: $signInput,
   ) {
-    videoUrls
+    definition
     name
     pronounce
-    definition
+    topics {
+      uid
+      name
+    }
+    videoUrls
   }
 }
 `;
@@ -22,8 +26,7 @@ mutation UpdateSign(
 const UpdateSign = () => {
   return (
     <UpdateResource
-      resourceName={SIGN.name}
-      resourceFields={SIGN.fields}
+      resourceName={SIGN_RESOURCE}
       query={SIGN_UPDATE_QUERY}
     />
   )

@@ -1,7 +1,7 @@
 import GetResource from './GetResource';
 import resourceConstant from '../../constants/resourceConstant';
 
-const SIGN = resourceConstant.SIGN;
+const SIGN_RESOURCE = resourceConstant.SIGN.resource;
 const SIGN_QUERY = `
   query ViewSign(
     $uid: UUID!,
@@ -9,11 +9,21 @@ const SIGN_QUERY = `
     viewSign(
       uid: $uid,
     ) {
-      name
-      pronounce
-      definition
-      state
-      videoUrls
+      sign {
+        name
+        pronounce
+        definition
+        state
+        topics {
+          uid
+          name
+        }
+        videoUrls
+      }
+      topics {
+        uid
+        name
+      }
     }
   }
 `;
@@ -22,8 +32,7 @@ const GetSign = () => {
   return (
     <GetResource
       query={SIGN_QUERY}
-      resourceName={SIGN.name}
-      resourceFields={SIGN.fields}
+      resourceName={SIGN_RESOURCE}
     />
   );
 }

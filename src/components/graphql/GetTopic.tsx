@@ -1,7 +1,7 @@
 import GetResource from './GetResource';
 import resourceConstant from '../../constants/resourceConstant';
 
-const TOPIC = resourceConstant.TOPIC;
+const TOPIC_NAME = resourceConstant.TOPIC.name;
 const TOPIC_QUERY = `
   query ViewTopic(
     $uid: UUID!,
@@ -18,8 +18,7 @@ const GetTopic = () => {
   return (
     <GetResource
       query={TOPIC_QUERY}
-      resourceName={TOPIC.name}
-      resourceFields={TOPIC.fields}
+      resourceName={TOPIC_NAME}
     />
   );
 }

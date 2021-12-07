@@ -4,9 +4,8 @@ interface IDataKeys {
 
 interface IResourceConstantData extends IDataKeys {
   key: string,
-  fields: string[],
-  name: string,
   resource: string,
+  resources: string,
 };
 
 interface IResourcesConstantData {
@@ -17,21 +16,12 @@ interface IResourcesConstantData {
 export default {
   SIGN: {
     key: 'SIGN',
-    fields: [
-      'videoUrls',
-      'name',
-      'pronounce',
-      'definition',
-    ],
-    name: 'sign',
-    resource: 'signs',
+    resource: 'sign',
+    resources: 'signs',
   },
   TOPIC: {
     key: 'TOPIC',
-    fields: [
-      'name',
-    ],
-    name: 'topic',
-    resource: 'topics',
+    resource: 'topic',
+    resources: 'topics',
   },
 } as IResourcesConstantData;

@@ -1,7 +1,7 @@
 import CreateResource from './CreateResource';
 import resourceConstant from '../../constants/resourceConstant';
 
-const TOPIC = resourceConstant.TOPIC;
+const TOPIC_RESOURCE = resourceConstant.TOPIC.resource;
 const TOPIC_CREATE_QUERY: string = `
 mutation CreateTopic(
   $topicInput: TopicInput,
@@ -19,8 +19,7 @@ const CreateTopic = ({ history }: any) => {
   return (
     <CreateResource
       history={history}
-      resourceFields={TOPIC.fields}
-      resourceName={TOPIC.name}
+      resourceName={TOPIC_RESOURCE}
       query={TOPIC_CREATE_QUERY}
     />
   )

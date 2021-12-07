@@ -4,9 +4,8 @@ import { gql, useQuery } from '@apollo/client';
 import Button from 'react-bootstrap/Button';
 import { capitalize } from '../../services/textService';
 
-const GetResource = ({ resourceName, query, resourceFields }: any) => {
+const GetResource = ({ query, resourceName }: any) => {
   const graphqlQuery = gql(query);
-  const qraphqlQueryResp = `view${capitalize(resourceName)}`;
   const {
     uid,
     loaded,
@@ -30,16 +29,14 @@ const GetResource = ({ resourceName, query, resourceFields }: any) => {
     if (loaded) return;
   
     if (data) {
+      const qraphqlQueryResp = `view${capitalize(resourceName)}`;
       const viewData = data[qraphqlQueryResp];
-      let useData: any = {};
-      resourceFields.forEach((field: string) => {
-        useData[field] = viewData[field];
-      });
-      setData(useData);
-      setInputData(useData);
+      setData(viewData);
+      setInputData(viewData);
       setLoaded(true);
     }
   }, [
+    resourceName,
     loaded, setLoaded,
     loading, error, uid, setLoading, setError, setData, setInputData, data]);
 

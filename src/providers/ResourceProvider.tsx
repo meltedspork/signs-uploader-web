@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import ResourceContext from '../contexts/ResourceContext';
 
 const Resource = ({ children, uid: resourceUid }: any) => {
