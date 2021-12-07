@@ -85,7 +85,7 @@ const SignForm = ({ children }: any) => {
   ]);
 
   return (
-    <Form className={classNames({ loading: loading })}>
+    <Form className={classNames({ loading })}>
       <Videofield value={inputVideoFile} onChange={setInputVideoFile} readOnly={readOnly} />
       <Videosfield title={inputName} value={videoUrls} readOnly={readOnly} />
       <Textfield label="Name" value={inputName} onChange={setInputName} readOnly={readOnly} />
