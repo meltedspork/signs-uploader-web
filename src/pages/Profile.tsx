@@ -6,11 +6,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 const Profile = () => {
   const config = useContext(ApiContext);
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
-  const [userMetadata, setUserMetadata] = useState(user);
-  console.log('user', user)
+  const [currentStatus, setCurrentStatus] = useState({});
   useEffect(() => {
-    console.log('user2222', user)
-    // console.log('this.context', this.context);
     const getUserMetadata = async (user: any) => {
       const {
         apiBaseUrl,
@@ -24,9 +21,6 @@ const Profile = () => {
           audience,
           scope: "read:signs",
         });
-
-        console.log('accessToken', accessToken)
-        console.log('user-------->', user)
   
         const userDetailsByIdUrl = `${apiBaseUrl}/status`;
   
@@ -36,24 +30,17 @@ const Profile = () => {
             Authorization: `Bearer ${accessToken}`,
           },
         });
-
-        console.log('metadataResponse -------->', metadataResponse)
   
-       const data = await metadataResponse.json();
+        const data = await metadataResponse.json();
 
-       getData(data);
-       setUserMetadata(data.user_metadata);
+        setCurrentStatus(data);
       } catch (e) {
         console.log(e);
       }
     };
-
-    const getData = async (data: any) => {
-      console.log('############ data!!!', data);
-    };
   
     getUserMetadata(user);
-  }, [getAccessTokenSilently, config, user]);
+  }, [getAccessTokenSilently, config]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -62,14 +49,18 @@ const Profile = () => {
   return (
     isAuthenticated && user ? (
       <div>
+        <h3>Profile Data</h3>
         <img src={user.picture} alt={user.name} />
-        <h2>{user.name}</h2>
-        <p>{user.email}</p>
-        <h3>User Metadata</h3>
-        {userMetadata ? (
-          <pre>{JSON.stringify(userMetadata, null, 2)}</pre>
+        {user ? (
+          <pre>{JSON.stringify(user, null, 2)}</pre>
         ) : (
-          "No user metadata defined"
+          'No User Profile'
+        )}
+        <h3>Current Status</h3>
+        {currentStatus ? (
+          <pre>{JSON.stringify(currentStatus, null, 2)}</pre>
+        ) : (
+          'No Status'
         )}
       </div>
     ) : <Redirect to={{ pathname: '/' }} />
