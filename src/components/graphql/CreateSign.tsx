@@ -34,8 +34,9 @@ const CreateSign = ({ history }: any) => {
   return (
     <Fragment>
       <GetResource
-        query={SIGN_NEW_QUERY}
         resourceName={SIGN_RESOURCE}
+        query={SIGN_NEW_QUERY}
+        hideButton={true}
       />
       <CreateResource
         history={history}

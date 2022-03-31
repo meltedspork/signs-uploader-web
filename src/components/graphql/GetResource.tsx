@@ -1,10 +1,10 @@
-import { useEffect, useContext } from 'react';
+import { Fragment, useEffect, useContext } from 'react';
 import ResourceContext from '../../contexts/ResourceContext';
 import { gql, useQuery } from '@apollo/client';
 import Button from 'react-bootstrap/Button';
 import { capitalize } from '../../services/textService';
 
-const GetResource = ({ query, resourceName }: any) => {
+const GetResource = ({ query, resourceName, hideButton=false }: any) => {
   const graphqlQuery = gql(query);
   const {
     uid,
@@ -44,6 +44,8 @@ const GetResource = ({ query, resourceName }: any) => {
     e.preventDefault();
     setReadOnly(false);
   }
+
+  if (hideButton) return <Fragment />;
 
   return (
     <Button variant="primary" type="button" onClick={onClickEditResource}>
