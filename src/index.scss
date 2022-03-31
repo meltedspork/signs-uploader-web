@@ -1,20 +1,24 @@
 
 @import '../node_modules//bootstrap/scss/bootstrap';
 
-form.loading {
-  .form-group {
-    div,
-    input,
-    input::placeholder,
-    label,
-    label::placeholder {
-      background-color: #000;
-      border-color: #000;
-      box-sizing: border-box;
-      color: #000;
+form {
+  padding-bottom: 50px;
 
-      span {
-        display: none;
+  &.loading {
+    .form-group {
+      div,
+      input,
+      input::placeholder,
+      label,
+      label::placeholder {
+        background-color: #000;
+        border-color: #000;
+        box-sizing: border-box;
+        color: #000;
+
+        span {
+          display: none;
+        }
       }
     }
   }
