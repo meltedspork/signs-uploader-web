@@ -10,7 +10,7 @@ const CreateResource = ({
   query,
 }: any) => {
   const qraphqlQueryInput = `${resourceName}Input`;
-  const qraphqlQueryResp = `update${capitalize(resourceName)}`;
+  const qraphqlQueryResp = `create${capitalize(resourceName)}`;
   const graphqlQuery = gql(query);
   const {
     setUid,

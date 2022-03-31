@@ -28,7 +28,7 @@ const Profile = () => {
         console.log('accessToken', accessToken)
         console.log('user-------->', user)
   
-        const userDetailsByIdUrl = `${apiBaseUrl}/test_jwt`;
+        const userDetailsByIdUrl = `${apiBaseUrl}/status`;
   
         const metadataResponse = await fetch(userDetailsByIdUrl, {
           credentials: 'include',
@@ -39,12 +39,17 @@ const Profile = () => {
 
         console.log('metadataResponse -------->', metadataResponse)
   
-       const { user_metadata } = await metadataResponse.json();
-  
-       setUserMetadata(user_metadata);
+       const data = await metadataResponse.json();
+
+       getData(data);
+       setUserMetadata(data.user_metadata);
       } catch (e) {
         console.log(e);
       }
+    };
+
+    const getData = async (data: any) => {
+      console.log('############ data!!!', data);
     };
   
     getUserMetadata(user);
