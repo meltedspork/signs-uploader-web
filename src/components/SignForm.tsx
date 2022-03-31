@@ -30,7 +30,9 @@ const SignForm = ({ children }: any) => {
   useEffect(() => {
     if (loading || error) return;
 
-    if (data.topics) {
+    console.log('---->', data);
+
+    if (data && data.topics) {
       setOptTopics(data.topics);
     }
 
