@@ -5,14 +5,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 
-const Videosfield = ({
+const VideoGrid= ({
   title,
-  value,
+  data,
   readOnly,
 }: any) => {
-  console.log('Videofield: value::::', value);  
+  console.log('VideoGrid: data::::', data);  
 
-  const videoUrls = (value || []).map((src: any, key: number) => {
+  const videoUrls = (data || []).map((src: any, key: number) => {
     const useInput = {
       alt: `${title} Sign #${key}`,
       src,
@@ -42,4 +42,4 @@ const Videosfield = ({
   return <Fragment />;
 }
 
-export default Videosfield;
+export default VideoGrid;
