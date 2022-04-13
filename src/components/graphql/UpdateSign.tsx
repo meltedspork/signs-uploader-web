@@ -17,7 +17,9 @@ mutation UpdateSign(
     topics {
       uid
     }
-    videoUrls
+    videos {
+      uid
+    }
   }
 }
 `;

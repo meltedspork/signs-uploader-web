@@ -1,12 +1,13 @@
 import { createContext } from 'react';
 
 const SIGN_DEFAULT_DATA = {
+  uid: null,
   definition: '',
   pronounce: '',
   title: '',
-  topics: [''],
+  topics: [],
+  videos: [],
   videoFile: null,
-  videoUrls: [''],
 };
 
 interface IDataKeys {
@@ -14,12 +15,13 @@ interface IDataKeys {
 }
 
 interface ISignDataProps extends IDataKeys {
+  uid: string | null,
   definition: string,
   pronounce: string,
   title: string,
-  topics: string[],
+  topics: string[] | null[],
+  videos: string[] | null[],
   videoFile: string | null,
-  videoUrls: string[],
 };
 
 interface ITopicProps extends IDataKeys {

@@ -8,7 +8,7 @@ const Profile = () => {
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
   const [currentStatus, setCurrentStatus] = useState({});
   useEffect(() => {
-    const getUserMetadata = async (user: any) => {
+    const getCurrentStatus = async () => {
       const {
         apiBaseUrl,
         data: {
@@ -39,7 +39,7 @@ const Profile = () => {
       }
     };
   
-    getUserMetadata(user);
+    getCurrentStatus();
   }, [getAccessTokenSilently, config]);
 
   if (isLoading) {

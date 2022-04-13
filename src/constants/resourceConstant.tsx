@@ -11,6 +11,7 @@ interface IResourceConstantData extends IDataKeys {
 interface IResourcesConstantData {
   SIGN: IResourceConstantData,
   TOPIC: IResourceConstantData,
+  VIDEO: IResourceConstantData,
 }
 
 export default {
@@ -23,5 +24,10 @@ export default {
     key: 'TOPIC',
     resource: 'topic',
     resources: 'topics',
+  },
+  VIDEO: {
+    key: 'VIDEO',
+    resource: 'video',
+    resources: 'videos',
   },
 } as IResourcesConstantData;

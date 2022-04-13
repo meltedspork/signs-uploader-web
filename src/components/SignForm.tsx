@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import classNames from  'classnames';
 import ResourceContext from '../contexts/ResourceContext';
-import Textfield from './inputs/Textfield';
-import Selectfield from './inputs/Selectfield';
-import VideoFields from './Videofields';
-import VideoGrid from './VideoGrid';
+import TextField from './inputs/TextField';
+import SelectField from './inputs/SelectField';
+import VideoFields from './inputs/VideoFields';
 import Form from 'react-bootstrap/Form';
 
 const SignForm = ({ children }: any) => {
@@ -20,10 +19,10 @@ const SignForm = ({ children }: any) => {
 
   const [resetReadOnly, setResetReadOnly] = useState(readOnly);
   const [inputVideoFiles, setInputVideoFiles] = useState(null);
-  const [videoUrls, setVideoUrls] = useState([] as any);
   const [inputName, setInputName] = useState('');
   const [inputPronounce, setInputPronounce] = useState('');
   const [inputDefinition, setInputDefinition] = useState('');
+  const [inputVideos, setInputVideos] = useState([] as any);
   const [inputTopics, setInputTopics] = useState([] as any);
   const [optTopics, setOptTopics] = useState([] as any);
 
@@ -42,7 +41,7 @@ const SignForm = ({ children }: any) => {
           name = '',
           pronounce = '',
           definition = '',
-          videoUrls = [],
+          videos = [],
           topics = [],
         },
       } = data;
@@ -50,7 +49,7 @@ const SignForm = ({ children }: any) => {
       setInputName(name);
       setInputPronounce(pronounce);
       setInputDefinition(definition);
-      setVideoUrls(videoUrls);
+      setInputVideos(videos);
       setInputTopics(topics);
       setResetReadOnly(false);
     } else if (reset) {
@@ -58,6 +57,7 @@ const SignForm = ({ children }: any) => {
       setInputName('');
       setInputPronounce('');
       setInputDefinition('');
+      setInputVideos([]);
       setInputTopics([]);
       setReset(false);
     }
@@ -79,7 +79,7 @@ const SignForm = ({ children }: any) => {
     data,
     setInputData,
     setInputVideoFiles, inputVideoFiles,
-    setVideoUrls,
+    setInputVideos,
     setInputName, inputName,
     setInputPronounce, inputPronounce,
     setInputDefinition, inputDefinition,
@@ -88,12 +88,12 @@ const SignForm = ({ children }: any) => {
 
   return (
     <Form className={classNames({ loading })}>
-      <Textfield label="Name" value={inputName} onChange={setInputName} readOnly={readOnly} />
-      <Textfield label="Pronounce" value={inputPronounce} onChange={setInputPronounce} readOnly={readOnly} />
-      <Textfield label="Definition" value={inputDefinition} onChange={setInputDefinition} readOnly={readOnly} />
-      <Selectfield label="Topics" value={inputTopics} options={optTopics} onChange={setInputTopics} readOnly={readOnly} />
-      <VideoFields data={videoUrls} readOnly={readOnly} />
-      <VideoGrid title={inputName} data={videoUrls} readOnly={readOnly} />
+      <TextField label="Name" value={inputName} onChange={setInputName} readOnly={readOnly} />
+      <TextField label="Pronounce" value={inputPronounce} onChange={setInputPronounce} readOnly={readOnly} />
+      <TextField label="Definition" value={inputDefinition} onChange={setInputDefinition} readOnly={readOnly} />
+      <SelectField label="Topics" value={inputTopics} options={optTopics} onChange={setInputTopics} readOnly={readOnly} />
+      <VideoFields title={inputName} videos={inputVideos} onChange={setInputVideos} readOnly={readOnly} />
+      {/* <VideoGrid title={inputName} data={inputVideos} readOnly={readOnly} /> */}
       {children}
     </Form>
   );

@@ -1,6 +1,6 @@
 import Form from 'react-bootstrap/Form';
 
-const Textfield = ({
+const TextField = ({
   label,
   value,
   readOnly,
@@ -25,4 +25,4 @@ const Textfield = ({
   );
 }
 
-export default Textfield;
+export default TextField;

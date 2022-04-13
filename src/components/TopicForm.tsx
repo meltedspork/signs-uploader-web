@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import classNames from  'classnames';
 import ResourceContext from '../contexts/ResourceContext';
-import Textfield from './inputs/Textfield';
+import TextField from './inputs/TextField';
 import Form from 'react-bootstrap/Form';
 
 const TopicForm = ({ children }: any) => {
@@ -42,7 +42,7 @@ const TopicForm = ({ children }: any) => {
 
   return (
     <Form className={classNames({ loading: loading })}>
-      <Textfield label="Name" value={inputName} onChange={setInputName} readOnly={readOnly} />
+      <TextField label="Name" value={inputName} onChange={setInputName} readOnly={readOnly} />
       {children}
     </Form>
   );

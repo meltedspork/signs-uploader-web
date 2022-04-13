@@ -1,54 +1,42 @@
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
+import Image from 'react-bootstrap/Image';
+import DeleteVideo from '../graphql/DeleteVideo';
 
-const Videofield = ({
-  value,
-  readOnly,
-  onChange,
-  enableDelete,
+const VideoField = ({
+  index,
+  video,
 }: any) => {
-  console.log('Videofield: value::::', value);
+  console.log('VideoField: video::::', video);
+  const {
+    uid,
+    title,
+    src,
+  } = video;
 
-  const label = (value /*&& value.name*/) || '';
-
-  if (enableDelete) {
-    const useInputId = `delete-${label}`
-    const useInputText = {
-      'aria-describedby': useInputId,
-      'aria-label': label,
-      placeholder: label,
-      plaintext: true,
-      readOnly: true,
-    };
-    const useInputButton= {
-      id: useInputId,
-      variant: 'danger',
-      onChange: (e: any) => onChange(e.target.value),
-      plaintext: readOnly,
-      readOnly,
-    };
-
-    return (
-      <InputGroup className="mb-3">
-        <FormControl {...useInputText} />
-        <Button {...useInputButton}>
-          Delete
-        </Button>
-      </InputGroup>
-      )
-  }
-
-  const useInputFile = {
-    label,
-    onChange: (e: any) => onChange(e.target.files[0]),
-    readOnly,
-    custom: true,
-    'data-browse': 'Upload',
+  const useInputText = {
+    'aria-describedby': `delete-${uid}`,
+    'aria-label': title,
+    placeholder: title,
+    plaintext: true,
+    readOnly: true,
+  };
+  const useInputThumbnail = {
+    alt: `${title} Sign #${index}`,
+    src,
+    rounded: true,
+    thumbnail: true,
   };
 
-  return <Form.File {...useInputFile} />;
+  return (
+    <InputGroup className="mb-3">
+      <InputGroup.Text>
+        <Image {...useInputThumbnail} />
+      </InputGroup.Text>
+      <FormControl {...useInputText} />
+      <DeleteVideo videoUid={uid} />
+    </InputGroup>
+  )
 }
 
-export default Videofield;
+export default VideoField;

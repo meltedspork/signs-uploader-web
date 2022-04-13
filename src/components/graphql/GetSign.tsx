@@ -18,7 +18,11 @@ const SIGN_QUERY = `
           uid
           name
         }
-        videoUrls
+        videos {
+          uid
+          title
+          src
+        }
       }
       topics {
         uid

@@ -1,7 +1,7 @@
 import Form from 'react-bootstrap/Form';
 import Select from 'react-select';
 
-const Selectfield = ({
+const SelectField = ({
   label,
   value,
   options,
@@ -28,4 +28,4 @@ const Selectfield = ({
   );
 }
 
-export default Selectfield;
+export default SelectField;

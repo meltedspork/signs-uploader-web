@@ -12,7 +12,7 @@ mutation CreateSign(
     signInput: $signInput,
   ) {
     uid
-    videoUrls
+    videos
     name
     pronounce
     definition

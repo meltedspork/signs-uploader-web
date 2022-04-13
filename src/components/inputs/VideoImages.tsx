@@ -1,23 +1,24 @@
-import { Fragment } from 'react';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 
-const VideoGrid= ({
+const VideoImages = ({
   title,
-  data,
-  readOnly,
+  videos,
 }: any) => {
-  console.log('VideoGrid: data::::', data);  
+  console.log('VideoImage: videos::::', videos);  
 
-  const videoUrls = (data || []).map((src: any, key: number) => {
+  const videoImage = (videos || []).map((video: any, key: number) => {
+    console.log('_____video', video);
+    const {
+      uid,
+      src,
+    } = video;
     const useInput = {
       alt: `${title} Sign #${key}`,
       src,
-      fluid: true,
-      rounded: true,
       thumbnail: true,
     };
     return (
@@ -29,17 +30,13 @@ const VideoGrid= ({
     );
   });
 
-  if (readOnly) {
-    return (
-      <Form.Group controlId={`Sign Videos`}>
-        <Container fluid>
-          {videoUrls}
-        </Container>
-      </Form.Group>
-    )
-  }
-
-  return <Fragment />;
+  return (
+    <Form.Group controlId={`Sign Videos`}>
+      <Container fluid>
+        {videoImage}
+      </Container>
+    </Form.Group>
+  )
 }
 
-export default VideoGrid;
+export default VideoImages;
