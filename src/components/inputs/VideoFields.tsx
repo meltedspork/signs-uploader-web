@@ -1,19 +1,27 @@
-// import { Fragment } from 'react';
 import Form from 'react-bootstrap/Form';
-import VideoImages from './VideoImages';
+import Container from 'react-bootstrap/Container';
+import VideoImage from './VideoImage';
 import VideoField from './VideoField';
 import FileField from './FileField';
 
 const VideoFields = ({
   title,
   videos,
+  videoFile,
   onChange,
   readOnly,
 }: any) => {
   console.log('VideoFields: videos::::', videos);
+  console.log('VideoFields: videoFile::::', videoFile);
 
   if (readOnly) {
-    return <VideoImages videos={videos} title={title} />
+    return (
+      <Form.Group controlId={`Sign Videos`}>
+        <Container fluid>
+        {(videos || []).map((video: any, key: number) => <VideoImage key={key} index={key} video={video} title={title} />)}
+        </Container>
+      </Form.Group>
+    );
   }
 
   return (
@@ -22,7 +30,7 @@ const VideoFields = ({
         Video
       </Form.Label>
       {(videos || []).map((video: any, key: number) => <VideoField key={key} index={key} video={video} />)}
-      <FileField key={(videos.length + 1)} value="" onChange={onChange} readOnly={readOnly} />
+      <FileField key={(videos.length + 1)} onChange={onChange} file={videoFile} />
     </Form.Group>
   );
 }

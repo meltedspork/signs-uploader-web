@@ -1,13 +1,11 @@
 import Form from 'react-bootstrap/Form';
 
 const FileField = ({
-  value,
-  readOnly,
+  readOnly = false,
   onChange,
+  file,
 }: any) => {
-  console.log('FileField: value::::', value);
-
-  const label = (value && value.name) || '';
+  const label = (file && file.name) || '';
 
   const useInputFile = {
     label,

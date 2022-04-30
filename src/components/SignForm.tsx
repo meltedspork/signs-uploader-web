@@ -18,11 +18,11 @@ const SignForm = ({ children }: any) => {
   } = useContext(ResourceContext);
 
   const [resetReadOnly, setResetReadOnly] = useState(readOnly);
-  const [inputVideoFiles, setInputVideoFiles] = useState(null);
   const [inputName, setInputName] = useState('');
   const [inputPronounce, setInputPronounce] = useState('');
   const [inputDefinition, setInputDefinition] = useState('');
-  const [inputVideos, setInputVideos] = useState([] as any);
+  const [inputVideoFile, setInputVideoFile] = useState(null as any);
+  const [inputVideos, setInputVideos] = useState([]);
   const [inputTopics, setInputTopics] = useState([] as any);
   const [optTopics, setOptTopics] = useState([] as any);
 
@@ -53,7 +53,7 @@ const SignForm = ({ children }: any) => {
       setInputTopics(topics);
       setResetReadOnly(false);
     } else if (reset) {
-      setInputVideoFiles(null);
+      setInputVideos([]);
       setInputName('');
       setInputPronounce('');
       setInputDefinition('');
@@ -63,7 +63,7 @@ const SignForm = ({ children }: any) => {
     }
 
     const updatedSignData = {
-      videoFile: inputVideoFiles,
+      videoFile: inputVideoFile,
       name: inputName,
       pronounce: inputPronounce,
       definition: inputDefinition,
@@ -78,8 +78,8 @@ const SignForm = ({ children }: any) => {
     readOnly,
     data,
     setInputData,
-    setInputVideoFiles, inputVideoFiles,
-    setInputVideos,
+    inputVideoFile,
+    setInputVideos, inputVideos,
     setInputName, inputName,
     setInputPronounce, inputPronounce,
     setInputDefinition, inputDefinition,
@@ -92,8 +92,7 @@ const SignForm = ({ children }: any) => {
       <TextField label="Pronounce" value={inputPronounce} onChange={setInputPronounce} readOnly={readOnly} />
       <TextField label="Definition" value={inputDefinition} onChange={setInputDefinition} readOnly={readOnly} />
       <SelectField label="Topics" value={inputTopics} options={optTopics} onChange={setInputTopics} readOnly={readOnly} />
-      <VideoFields title={inputName} videos={inputVideos} onChange={setInputVideos} readOnly={readOnly} />
-      {/* <VideoGrid title={inputName} data={inputVideos} readOnly={readOnly} /> */}
+      <VideoFields title={inputName} videos={inputVideos} videoFile={inputVideoFile} onChange={setInputVideoFile} readOnly={readOnly} />
       {children}
     </Form>
   );
