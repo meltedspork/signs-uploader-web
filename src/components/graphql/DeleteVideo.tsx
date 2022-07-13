@@ -14,14 +14,24 @@ mutation DeleteVideo(
     uid: $uid,
     signUid: $signUid,
   ) {
-    definition
-    name
-    pronounce
+    sign {
+      name
+      pronounce
+      definition
+      state
+      topics {
+        uid
+        name
+      }
+      videos {
+        uid
+        title
+        src
+      }
+    }
     topics {
       uid
-    }
-    videos {
-      uid
+      name
     }
   }
 }
@@ -32,9 +42,11 @@ const DeleteVideo = (props: any) => {
   const graphqlQuery = gql(VIDEO_DELETE_QUERY);
   const {
     uid,
+    data,
     setData,
     setInputData,
     setReadOnly,
+    setResetReadOnly,
   } = useContext(ResourceContext);
   const variables = {
     uid: videoUid,
@@ -56,13 +68,15 @@ const DeleteVideo = (props: any) => {
     console.log('DeleteResource::::::::::::');
     console.log('DeleteResource:::::::::::: start');
     console.log('DeleteResource: variables:', variables);
+    console.log('DeleteResource:::::::::::: data', data);
     console.log('DeleteResource:::::::::::: end');
-
-    const { data } = await deleteResource({ variables });
-    const deletedData = data['deleteVideo'];
+    const { data: videoData } = await deleteResource({ variables });
+    console.log('videoData', videoData);
+    const deletedData = videoData['deleteVideo'];
     setInputData(deletedData);
     setData(deletedData);
     setReadOnly(true);
+    setResetReadOnly(true);
   }
 
   return (

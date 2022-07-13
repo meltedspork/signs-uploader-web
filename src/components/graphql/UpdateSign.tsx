@@ -11,14 +11,24 @@ mutation UpdateSign(
     uid: $uid,
     signInput: $signInput,
   ) {
-    definition
-    name
-    pronounce
+    sign {
+      name
+      pronounce
+      definition
+      state
+      topics {
+        uid
+        name
+      }
+      videos {
+        uid
+        title
+        src
+      }
+    }
     topics {
       uid
-    }
-    videos {
-      uid
+      name
     }
   }
 }

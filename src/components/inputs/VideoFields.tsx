@@ -1,6 +1,6 @@
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
-import VideoImage from './VideoImage';
+import VideoImage from './VideoModal';
 import VideoField from './VideoField';
 import FileField from './FileField';
 

@@ -9,6 +9,7 @@ const Resource = ({ children, uid: resourceUid }: any) => {
   const [data, setData] = useState(null);
   const [inputData, setInputData] = useState(null);
   const [readOnly, setReadOnly] = useState(true);
+  const [resetReadOnly, setResetReadOnly] = useState(true);
 
   const contextValues = {
     loaded,
@@ -19,6 +20,8 @@ const Resource = ({ children, uid: resourceUid }: any) => {
     setError,
     readOnly,
     setReadOnly,
+    resetReadOnly,
+    setResetReadOnly,
     uid,
     setUid,
     data: (data as any),

@@ -18,6 +18,7 @@ const UpdateResource = ({
     inputData,
     setInputData,
     setReadOnly,
+    setResetReadOnly,
   } = useContext(ResourceContext);
 
   const [updateResource] = useMutation(graphqlQuery);
@@ -39,6 +40,7 @@ const UpdateResource = ({
     setInputData(updatedData);
     setData(updatedData);
     setReadOnly(true);
+    setResetReadOnly(true);
   }
 
   return (

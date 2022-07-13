@@ -13,11 +13,12 @@ const SignForm = ({ children }: any) => {
     data,
     setInputData,
     readOnly,
+    resetReadOnly,
+    setResetReadOnly,
     reset,
     setReset,
   } = useContext(ResourceContext);
 
-  const [resetReadOnly, setResetReadOnly] = useState(readOnly);
   const [inputName, setInputName] = useState('');
   const [inputPronounce, setInputPronounce] = useState('');
   const [inputDefinition, setInputDefinition] = useState('');

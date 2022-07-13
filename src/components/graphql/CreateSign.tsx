@@ -11,11 +11,25 @@ mutation CreateSign(
   createSign(
     signInput: $signInput,
   ) {
-    uid
-    videos
-    name
-    pronounce
-    definition
+    sign {
+      name
+      pronounce
+      definition
+      state
+      topics {
+        uid
+        name
+      }
+      videos {
+        uid
+        title
+        src
+      }
+    }
+    topics {
+      uid
+      name
+    }
   }
 }
 `;

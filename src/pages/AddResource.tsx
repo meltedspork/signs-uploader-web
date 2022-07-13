@@ -9,6 +9,7 @@ const AddResource = ({ children }: any) => {
   const [data, setData] = useState(null);
   const [inputData, setInputData] = useState(null);
   const [readOnly, setReadOnly] = useState(false);
+  const [resetReadOnly, setResetReadOnly] = useState(false);
   const [reset, setReset] = useState(false);
 
   const contextValues = {
@@ -20,6 +21,8 @@ const AddResource = ({ children }: any) => {
     setError,
     readOnly,
     setReadOnly,
+    resetReadOnly,
+    setResetReadOnly,
     uid: (uid as any),
     setUid,
     data: (data as any),
