@@ -35,8 +35,9 @@ const UpdateResource = ({
       uid,
       [qraphqlQueryInput]: inputData,
     };
-    const { data } = await updateResource({ variables });
-    const updatedData = data[qraphqlQueryResp];
+    console.log('variables', variables);
+    const { data: fetchedData } = await updateResource({ variables });
+    const updatedData = fetchedData[qraphqlQueryResp];
     setInputData(updatedData);
     setData(updatedData);
     setReadOnly(true);

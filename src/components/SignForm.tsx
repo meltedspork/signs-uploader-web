@@ -70,6 +70,7 @@ const SignForm = ({ children }: any) => {
       definition: inputDefinition,
       topics: inputTopics.map(({ uid }: any) => uid),
     };
+    console.log('updatedSignData', updatedSignData);
     setInputData(updatedSignData);
   }, [
     setResetReadOnly, resetReadOnly,
