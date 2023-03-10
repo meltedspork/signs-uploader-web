@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import classNames from  'classnames';
 import ResourceContext from '../contexts/ResourceContext';
-import TextField from './inputs/TextField';
+import TextField from '../inputs/TextField';
 import Form from 'react-bootstrap/Form';
 
 const TopicForm = ({ children }: any) => {
