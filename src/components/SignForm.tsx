@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import classNames from  'classnames';
 import ResourceContext from '../contexts/ResourceContext';
-import TextField from './inputs/TextField';
-import SelectField from './inputs/SelectField';
-import VideoFields from './inputs/VideoFields';
+import TextField from '../components/inputs/TextField';
+import SelectField from '../components/inputs/SelectField';
+import VideoFields from '../components/inputs/VideoFields';
 import Form from 'react-bootstrap/Form';
 
 const SignForm = ({ children }: any) => {
