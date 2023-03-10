@@ -10,6 +10,7 @@ const Signs = ({ history, match }: any) => {
       resourceKey={SIGN_KEY}
       history={history}
       match={match}
+      usePaging={false}
     >
       <GetSigns />
     </Resources>

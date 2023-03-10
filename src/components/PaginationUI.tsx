@@ -64,7 +64,10 @@ const _buildPagination = ({ page: currentPage, size: limit, total }: any) => {
   return items;
 }
 
-const PaginationUI = ({ resourcePath, history }: any) => {
+const PaginationUI = ({
+  resourcePath,
+  history,
+}: any) => {
   const {
     loading,
     setLoading,

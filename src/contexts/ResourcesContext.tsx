@@ -1,16 +1,5 @@
 import { createContext } from 'react';
 
-const EMPTY_FUNCTION = () => {};
-const DEFAULT_DATA = {
-  uid: '',
-  name: '',
-};
-const PAGINATION_DEFAULT_DATA = {
-  page: 1,
-  size: 0,
-  total: 0,
-};
-
 interface IDataKeys {
   [key: string]: string | any;
 }
@@ -18,13 +7,13 @@ interface IDataKeys {
 interface IDataProps extends IDataKeys {
   uid: string,
   name: string,
-};
+}
 
 interface IPaginationDataProps extends IDataKeys {
   page: number,
   size: number,
   total: number,
-};
+}
 
 interface IContextProps {
   data: [IDataProps],
@@ -33,6 +22,7 @@ interface IContextProps {
   setLoading: Function,
   error: any,
   setError: Function,
+  usePagination: boolean,
   pagination: IPaginationDataProps,
   setPagination: Function,
   page: number,
@@ -44,20 +34,28 @@ interface IContextProps {
 }
 
 const ResourcesContext = createContext({
+  data: [{
+    uid: '',
+    name: '',
+  }],
+  setData: () => null,
   loading: true,
-  setLoading: EMPTY_FUNCTION,
+  setLoading: () => null,
   error: null,
-  setError: EMPTY_FUNCTION,
-  data: [DEFAULT_DATA],
-  setData: EMPTY_FUNCTION,
-  pagination: PAGINATION_DEFAULT_DATA,
-  setPagination: EMPTY_FUNCTION,
-  page: PAGINATION_DEFAULT_DATA.page,
-  setPage: EMPTY_FUNCTION,
-  size: PAGINATION_DEFAULT_DATA.size,
-  setSize: EMPTY_FUNCTION,
-  fetchMore: [EMPTY_FUNCTION],
-  setFetchMore: EMPTY_FUNCTION,
+  setError: () => null,
+  usePagination: true,
+  pagination: {
+    page: 1,
+    size: 0,
+    total: 0,
+  },
+  setPagination: () => null,
+  page: 1,
+  setPage: () => null,
+  size: 0,
+  setSize: () => null,
+  fetchMore: [() => null],
+  setFetchMore: () => null,
 } as IContextProps);
 
 export default ResourcesContext;

@@ -9,7 +9,8 @@ const Resources = ({
   resourceKey,
   children,
   history,
-  match
+  match,
+  usePaging=true,
 }: any) => {
   const resource: any = (resourceConstant as any)[resourceKey];
   const resourceName = resource.resource;
@@ -17,13 +18,14 @@ const Resources = ({
   const {
     params: {
       page: currentPage = 1,
-      size: currentSize = 15,
+      size: currentSize = 100,
     }
   } = match;
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
+  const [usePagination] = useState(usePaging);
   const [pagination, setPagination] = useState({
     page: Number(currentPage),
     size: Number(currentSize),
@@ -40,6 +42,7 @@ const Resources = ({
     setError,
     data: (data as any),
     setData,
+    usePagination,
     pagination,
     setPagination,
     page,
@@ -56,7 +59,7 @@ const Resources = ({
         {() => (
           <Fragment>
             <h1>{capitalize(resource.resourceName)}</h1>
-            <PaginationUI history={history} resourcePath={resourcesName} />
+            {usePagination && <PaginationUI history={history} resourcePath={resourcesName} />}
             {children}
             <ResourcesTable history={history} resourcePath={resourceName} />
           </Fragment>

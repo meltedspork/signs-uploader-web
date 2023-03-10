@@ -22,11 +22,11 @@ interface ISignDataProps extends IDataKeys {
   topics: string[] | null[],
   videos: string[] | null[],
   videoFile: string | null,
-};
+}
 
 interface ITopicProps extends IDataKeys {
   topic: string,
-};
+}
 
 interface IContextProps {
   uid: string | null,
@@ -51,23 +51,23 @@ interface IContextProps {
 
 const ResourceContext = createContext({
   loaded: false,
-  setLoaded: () => {},
+  setLoaded: () => null,
   loading: true,
-  setLoading: () => {},
+  setLoading: () => null,
   error: null,
-  setError: () => {},
+  setError: () => null,
   readOnly: false,
-  setReadOnly: () => {},
+  setReadOnly: () => null,
   resetReadOnly: false,
-  setResetReadOnly: () => {},
+  setResetReadOnly: () => null,
   uid: null,
-  setUid: () => {},
+  setUid: () => null,
   data: SIGN_DEFAULT_DATA,
-  setData: () => {},
+  setData: () => null,
   inputData: SIGN_DEFAULT_DATA,
-  setInputData: () => {},
+  setInputData: () => null,
   reset: false,
-  setReset: () => {},
+  setReset: () => null,
 } as IContextProps);
 
 export default ResourceContext;
