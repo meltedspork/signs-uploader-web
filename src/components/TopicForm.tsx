@@ -17,8 +17,8 @@ const TopicForm = ({ children }: any) => {
 
   const [inputName, setInputName] = useState('');
 
-  useEffect(() => {
-    if (loading || error || !data) return;
+  useEffect(() => {  
+    if (loading || error) return;
 
     if (readOnly) {
       setInputName(data.name);
