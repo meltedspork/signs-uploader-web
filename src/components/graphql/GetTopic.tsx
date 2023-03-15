@@ -1,7 +1,7 @@
 import GetResource from './GetResource';
 import resourceConstant from '../../constants/resourceConstant';
 
-const TOPIC_NAME = resourceConstant.TOPIC.name;
+const TOPIC_NAME = resourceConstant.TOPIC.resource;
 const TOPIC_QUERY = `
   query ViewTopic(
     $uid: UUID!,
