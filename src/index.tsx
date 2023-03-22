@@ -45,13 +45,13 @@ function renderApp(configJson: {
 
 fetch(`${apiBaseUrl}/config.json`, {
   credentials: 'include',
-}).then(response => response.json()).then((data) => {
+}).then(response => response.json()).then(data => {
   console.log('data', data);
   const {
     audience,
     client_id: clientId,
     domain,
-    redirect_uri: redirectUri,
+    redirect_uri: redirectUri
   } = data
   renderApp({
     apiBaseUrl,
@@ -59,10 +59,10 @@ fetch(`${apiBaseUrl}/config.json`, {
       audience,
       clientId,
       domain,
-      redirectUri,
+      redirectUri
     },
   });
-});
+}).catch(() => console.error('Server is unreachable'));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
